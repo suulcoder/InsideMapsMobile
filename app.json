@@ -1,0 +1,12 @@
+{
+  "name": "InsideMapsM",
+  "displayName": "InsideMapsM",
+  "expo": {
+    "name": "InsideMapsM",
+    "slug": "InsideMapsM",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
