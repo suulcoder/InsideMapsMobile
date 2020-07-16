@@ -9,8 +9,6 @@ import { reduxForm } from 'redux-form'
 import { Link } from "react-router-dom";
 import { Actions } from 'react-native-router-flux';
 import { LinearGradient } from 'expo-linear-gradient';
-import { URL } from '../../../configuration'
-import Spinner from 'react-native-loading-spinner-overlay';
 
 const Login = ({
   onSubmit,
@@ -37,7 +35,7 @@ const Login = ({
       <TextInput
         style={styles.input}
         className="user"
-        placeholderTextColor="#888888" 
+        placeholderTextColor="#999999" 
         type="text"
         placeholder="username"
         value={username}   
@@ -48,7 +46,7 @@ const Login = ({
           style={styles.input}
           className="password"
           type="password"
-          placeholderTextColor="#888888"
+          placeholderTextColor="#999999"
           secureTextEntry={true}
           placeholder="password"
           value={password}
@@ -76,7 +74,7 @@ const Login = ({
                   }>{'LOGIN'}</Text>
               </View>
               <View style={styles.option}>
-                <Text style={styles.text} >{"Do you have an account?  "}</Text>
+                <Text style={styles.text} >{"I don't have an account  "}</Text>
                     <Text style={styles.link} title={' register now '} type="submit" 
                     onPress={() =>
                       Actions.SignUp(true)
@@ -113,7 +111,7 @@ export default connect(
   }),
   (stateToProps,disptachToProps) => {
     if(stateToProps.isAuthenticated){
-        Actions.Home(true)
+        Actions.replace('Home')
     }
     return ({...disptachToProps,...stateToProps})
   }

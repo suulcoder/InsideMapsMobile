@@ -1,12 +1,37 @@
 {
-  "name": "InsideMapsM",
-  "displayName": "InsideMapsM",
   "expo": {
-    "name": "InsideMapsM",
-    "slug": "InsideMapsM",
+    "name": "InsideMaps",
+    "slug": "InsideMaps",
+    "platforms": [
+      "ios",
+      "android",
+    ],
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/public/static/img/logo.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
     "assetBundlePatterns": [
       "**/*"
-    ]
-  }
+    ],
+    "ios": {
+      "bundleIdentifier": "com.insideMaps.insideMaps"
+    },
+    "android": {
+        "package": "com.insideMaps.insideMaps"
+   },
+   "permissions": [
+    "CAMERA",
+    "READ_INTERNAL_STORAGE",
+    "READ_EXTERNAL_STORAGE",
+    "WRITE_EXTERNAL_STORAGE"
+  ]
+  },
+  "name": "votark"
 }

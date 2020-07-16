@@ -5,7 +5,6 @@ import { normalize } from '../../utils/normalize';
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: colors.black,
       alignItems: 'center',
       justifyContent: 'center',
       borderColor: colors.primary,
@@ -26,8 +25,28 @@ const styles = StyleSheet.create({
         fontSize: normalize(0.9),
         textDecorationLine: 'underline',
     },
+    row:{
+      alignItems: 'baseline',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      width: '100%',
+    },
+    row_:{
+      alignItems: 'baseline',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '80%',
+      marginTop: normalize(10)
+    },
+    row__:{
+      alignItems: 'baseline',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      width: '40%',
+      marginTop: normalize(10)
+    },
     input: {
-        width: normalize(1600),
+        width: '39%',
         alignSelf: 'center',
         maxWidth: 700,
         maxHeight: 50,
@@ -36,14 +55,47 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         fontSize: normalize(1.5),
         margin: normalize(0.5),
+        marginRight: '1%',
+        marginLeft: '1%',
         padding: 10,
         borderColor: colors.white,
         borderWidth: 1
     },
+    input_: {
+      width: '80%',
+      alignSelf: 'center',
+      maxWidth: 700,
+      maxHeight: 50,
+      height: normalize(30),
+      backgroundColor: colors.white,
+      borderRadius: 7,
+      fontSize: normalize(1.5),
+      margin: normalize(0.5),
+      padding: 10,
+      borderColor: colors.white,
+      borderWidth: 1
+    },
+    input__: {
+      width: normalize(40),
+      alignSelf: 'center',
+      maxWidth: 700,
+      maxHeight: 50,
+      height: normalize(30),
+      backgroundColor: colors.white,
+      borderRadius: 7,
+      fontSize: normalize(1.5),
+      margin: normalize(0.5),
+      marginRight: '1%',
+      marginLeft: '1%',
+      padding: 10,
+      borderColor: colors.white,
+      borderWidth: 1
+  },
     button:{
         alignItems: 'center',
         borderRadius: 10,
-        backgroundColor: colors.terceary,
+        color: colors.white,
+        backgroundColor: colors.secondary,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
@@ -56,7 +108,7 @@ const styles = StyleSheet.create({
     logo: {
         alignSelf: 'center',
         height: normalize(300),
-        width: normalize(170),
+        width: normalize(300),
         margin: normalize(20),
       },
     buttons:{
