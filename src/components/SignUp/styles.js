@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
       alignItems: 'baseline',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      width: '80%',
-      marginTop: normalize(10)
+      width: '55%',
+      margin: normalize(1)
     },
     row__:{
       alignItems: 'baseline',
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
       marginTop: normalize(10)
     },
     input: {
-        width: '39%',
+        width: '36%',
         alignSelf: 'center',
         maxWidth: 700,
         maxHeight: 50,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     input_: {
-      width: '80%',
+      width: '75%',
       alignSelf: 'center',
       maxWidth: 700,
       maxHeight: 50,
@@ -80,13 +80,11 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       maxWidth: 700,
       maxHeight: 50,
-      height: normalize(30),
+      height: normalize(20),
       backgroundColor: colors.white,
       borderRadius: 7,
       fontSize: normalize(1.5),
       margin: normalize(0.5),
-      marginRight: '1%',
-      marginLeft: '1%',
       padding: 10,
       borderColor: colors.white,
       borderWidth: 1
@@ -107,8 +105,8 @@ const styles = StyleSheet.create({
     },
     logo: {
         alignSelf: 'center',
-        height: normalize(300),
-        width: normalize(300),
+        height: normalize(200),
+        width: normalize(200),
         margin: normalize(20),
       },
     buttons:{

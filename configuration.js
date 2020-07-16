@@ -4,9 +4,7 @@
     app.
 */
 
-export const API_URL = 'https://01e5e8587daf.ngrok.io/'
-export const URL = 'https://localhost:19006/'
-export const STATIC_URL = 'https://01e5e8587daf.ngrok.io'
+export const API_URL = 'https://inside-maps-api.herokuapp.com/'
 
 export const colors = {             //based on triada
     primary: '#02121B',

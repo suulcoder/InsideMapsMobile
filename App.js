@@ -11,6 +11,7 @@ import React from 'react';
 import reducer from './src/reducers';
 import SignUp from './src/components/SignUp';
 import throttle from 'lodash/throttle'
+import Home from './src/components/Home';
 
 //localStorage.clear();
 let persistedState = undefined
@@ -36,6 +37,7 @@ export default function App() {
           <Stack key="root" style={styles.container}>
             <Scene key="Login"  component={Login} hideNavBar={true} />
             <Scene key="SignUp" component={SignUp}  hideNavBar={true} />
+            <Scene key="Home" component={Home}  hideNavBar={true} />
           </Stack>
         </Router>        
    </Provider>

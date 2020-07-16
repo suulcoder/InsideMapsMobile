@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { Actions } from 'react-native-router-flux';
 import { validateEmail } from '../../utils/validate';
 import { LinearGradient } from 'expo-linear-gradient';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const SignUp = ({
   onSubmit,
@@ -52,7 +53,8 @@ const SignUp = ({
         type="email"
         placeholderTextColor="#999999"
         placeholder="email"
-        value={email}   
+        value={email}    
+        onChangeText={changeEmail}
       />
       <View style={styles.row}>
         <TextInput
@@ -131,9 +133,12 @@ const SignUp = ({
           ) : (
             <View> 
               <View style={styles.button}>
-                  <Text style={styles.button} type="submit" onPress={
-                      () => onSubmit(name, lastname, user, email, password, age, sex, passwordConfirmusername,password, email, confirmPassword)
-                  }>{'SIGN UP'}</Text>
+                  <TouchableOpacity onPress={
+                        () => onSubmit(name, lastname, username, email, password, age, sex, confirmPassword)
+                    }>
+                    <Text style={styles.button} type="submit" >{'SIGN UP'}</Text>
+                  </TouchableOpacity>  
+                  
               </View>
               <View style={styles.option}>
                 <Text style={styles.text} >{"I have an account  "}</Text>
@@ -173,7 +178,7 @@ export default mySignUp = connect(
           if (age > 0 || !age) {
             if (validateEmail(email)) {
               dispatch(
-                actions.startSignUp(
+                actions.startRegistration(
                   name,
                   lastname,
                   user,
@@ -184,26 +189,26 @@ export default mySignUp = connect(
                 )
               );
             } else {
-              dispatch(actions.failLogin("WRITE A VALID EMAIL", 1));
+              dispatch(actions.failRegistration("WRITE A VALID EMAIL"));
             }
           } else {
-            dispatch(actions.failLogin("WRITE A VALID AGE", 1));
+            dispatch(actions.failRegistration("WRITE A VALID AGE"));
           }
         } else {
-          dispatch(actions.failLogin("PASSWORDS MUST MATCH", 1));
+          dispatch(actions.failRegistration("PASSWORDS MUST MATCH"));
         }
       } else if (!user) {
-        dispatch(actions.failLogin("USER FIELD MUST NOT BE EMPTY", 1));
-      } else if (!password) {
-        dispatch(actions.failLogin("PASSWORD FIELD MUST NOT BE EMPTY", 1));
+        dispatch(actions.failRegistration("USER FIELD MUST NOT BE EMPTY"));
       } else if (!name) {
-        dispatch(actions.failLogin("NAME FIELD MUST NOT BE EMPTY", 1));
+        dispatch(actions.failRegistration("NAME FIELD MUST NOT BE EMPTY"));
       } else if (!lastname) {
-        dispatch(actions.failLogin("LASTNAME FIELD MUST NOT BE EMPTY", 1));
+        dispatch(actions.failRegistration("LASTNAME FIELD MUST NOT BE EMPTY"));
+      } else if (!password) {
+        dispatch(actions.failRegistration("PASSWORD FIELD MUST NOT BE EMPTY"));
       } else if (!email) {
-        dispatch(actions.failLogin("EMAIL FIELD MUST NOT BE EMPTY", 1));
+        dispatch(actions.failRegistration("EMAIL FIELD MUST NOT BE EMPTY"));
       } else if (!age) {
-        dispatch(actions.failLogin("AGE FIELD MUST NOT BE EMPTY", 1));
+        dispatch(actions.failRegistration("AGE FIELD MUST NOT BE EMPTY"));
       }
     },
   }),

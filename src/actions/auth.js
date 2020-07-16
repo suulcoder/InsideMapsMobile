@@ -1,9 +1,9 @@
 import * as types from '../types/auth';
 
 
-export const startLogin = (username, password) => ({
+export const startLogin = (email, password) => ({
   type: types.AUTHENTICATION_STARTED,
-  payload: { username, password },
+  payload: { email, password },
 });
 
 export const completeLogin = token => ({
@@ -16,10 +16,18 @@ export const failLogin = error => ({
   payload: { error },
 });
 
-export const startRegistration = (username, password, email) => ({
-  type: types.REGISTRATION_STARTED,
-  payload: { username, password, email },
-});
+export const startRegistration = (name, lastname, username, email, password, age, gender) => ({
+    type: types.REGISTRATION_STARTED,
+    payload: { 
+      firstname: name, 
+      lastname, 
+      username, 
+      email, 
+      password, 
+      age, 
+      gender,
+      role:1},
+  });
 
 export const completeRegistration = () => ({
   type: types.REGISTRATION_COMPLETED,

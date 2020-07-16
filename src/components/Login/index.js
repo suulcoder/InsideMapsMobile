@@ -5,10 +5,9 @@ import * as selectors from '../../reducers';
 import React, { useState } from 'react';
 import styles from './styles'
 import { colors } from '../../../configuration';
-import { reduxForm } from 'redux-form'
-import { Link } from "react-router-dom";
 import { Actions } from 'react-native-router-flux';
 import { LinearGradient } from 'expo-linear-gradient';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Login = ({
   onSubmit,
@@ -16,7 +15,7 @@ const Login = ({
   error = null,
 }) => {
 
-  const [username, changeUsername] = useState('');
+  const [email, changeemail] = useState('');
   const [password, changePassword] = useState('');
   
   return (
@@ -36,11 +35,12 @@ const Login = ({
         style={styles.input}
         className="user"
         placeholderTextColor="#999999" 
+        keyboardType={'email-address'}
         type="text"
-        placeholder="username"
-        value={username}   
-        onChangeText={changeUsername}
-        onChange={e => changeUsername(e.target.value)}
+        placeholder="email"
+        value={email}   
+        onChangeText={changeemail}
+        onChange={e => changeemail(e.target.value)}
       />
       <TextInput
           style={styles.input}
@@ -69,9 +69,11 @@ const Login = ({
           ) : (
             <View> 
               <View style={styles.button}>
-                  <Text style={styles.button} type="submit" onPress={
-                      () => onSubmit(username,password)
-                  }>{'LOGIN'}</Text>
+                <TouchableOpacity onPress={
+                      () => onSubmit(email,password)
+                  }>
+                    <Text style={styles.button} type="submit" >{'LOGIN'}</Text>
+                </TouchableOpacity>
               </View>
               <View style={styles.option}>
                 <Text style={styles.text} >{"I don't have an account  "}</Text>
@@ -97,12 +99,12 @@ export default connect(
     isAuthenticated: selectors.isAuthenticated(state),
   }),
   dispatch => ({
-    onSubmit(username, password) {
-      if(username && password){
-        dispatch(actions.startLogin(username, password))
+    onSubmit(email, password) {
+      if(email && password){
+        dispatch(actions.startLogin(email, password))
       }
-      else if(!username){
-        dispatch(actions.failLogin('WRITE A VALID USERNAME'))
+      else if(!email){
+        dispatch(actions.failLogin('WRITE A VALID EMAIL'))
       }
       else if(!password){
         dispatch(actions.failLogin('WRITE A VALID PASSWORD'))
