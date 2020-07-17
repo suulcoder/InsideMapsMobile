@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expo": "~38.0.1",
+    "expo-barcode-scanner": "^8.2.1",
     "expo-splash-screen": "~0.3.1",
     "expo-status-bar": "^1.0.0",
     "expo-updates": "~0.2.10",
@@ -16,6 +17,7 @@
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "~0.62.2",
+    "react-native-camera": "^3.31.1",
     "react-native-gesture-handler": "~1.6.1",
     "react-native-loading-spinner-overlay": "^1.1.0",
     "react-native-reanimated": "~1.9.0",

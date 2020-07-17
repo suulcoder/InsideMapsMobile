@@ -24,7 +24,7 @@ const Home = ({}) => {
         </TouchableOpacity>
       </View>
       <View style={styles.scanButton}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>Actions.QRScanner(true)}>
             <Image style={styles.icon_} source={require('../../public/static/icon/qr.png')} ></Image>
           </TouchableOpacity>
       </View>

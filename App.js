@@ -12,6 +12,7 @@ import reducer from './src/reducers';
 import SignUp from './src/components/SignUp';
 import throttle from 'lodash/throttle'
 import Home from './src/components/Home';
+import QRScanner from './src/components/QRScanner';
 
 //localStorage.clear();
 let persistedState = undefined
@@ -38,6 +39,7 @@ export default function App() {
             <Scene key="Login"  component={Login} hideNavBar={true} />
             <Scene key="SignUp" component={SignUp}  hideNavBar={true} />
             <Scene key="Home" component={Home}  hideNavBar={true} />
+            <Scene key="QRScanner" component={QRScanner}  hideNavBar={true} />
           </Stack>
         </Router>        
    </Provider>
