@@ -1,54 +1,52 @@
-import { createStore, applyMiddleware } from 'redux';
-import { Platform } from 'react-native';
+import 'react-native-gesture-handler';
+import React, { Component } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
-import { Router, Stack, Scene } from "react-native-router-flux";
-import { StyleSheet } from 'react-native';
-import {loadState,saveState} from './store'
-import createSagaMiddleware from 'redux-saga';
-import Login from './src/components/Login';
-import mainSaga from './src/sagas';
-import React from 'react';
-import reducer from './src/reducers';
-import SignUp from './src/components/SignUp';
-import throttle from 'lodash/throttle'
-import Home from './src/components/Home';
-import QRScanner from './src/components/QRScanner';
+import { PersistGate } from 'redux-persist/integration/react'
 
-//localStorage.clear();
-let persistedState = undefined
-if(loadState()!==undefined){
-  persistedState = {
-    auth: loadState().auth,
-    user: {
-      user: loadState().user.user
-    }
+import { ApplicationProvider } from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
+import { default as theme } from './theme.json';
+
+//store
+import { store, persistor } from './js/redux/store';
+//screens
+import Home from './js/screens/Home';
+
+const Stack = createStackNavigator();
+
+export default class App extends Component {
+  render() {
+    return (
+      <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <NavigationContainer>
+              <Stack.Navigator screenOptions={{ headerShown: true }}>
+                <Stack.Screen
+                  name="Home"
+                  component={Home}
+                  options={{ headerShown: false }}
+                />
+
+              </Stack.Navigator>
+            </NavigationContainer>
+          </PersistGate>
+        </Provider>
+      </ApplicationProvider>
+    );
   }
 }
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducer,persistedState,applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(mainSaga);
-store.subscribe(throttle(()=>{
-  saveState(store.getState());
-}),5000)
 
-export default function App() {
-  return (
-    <Provider store={store}>
-        <Router>
-          <Stack key="root" style={styles.container}>
-            <Scene key="Login"  component={Login} hideNavBar={true} />
-            <Scene key="SignUp" component={SignUp}  hideNavBar={true} />
-            <Scene key="Home" component={Home}  hideNavBar={true} />
-            <Scene key="QRScanner" component={QRScanner}  hideNavBar={true} />
-          </Stack>
-        </Router>        
-   </Provider>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+const headerOptions = {
+  title: 'Title',
+  headerStyle: {
+    backgroundColor: '#438FCB',
   },
-});
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontFamily: 'Tahu!',
+    fontSize: 25,
+  },
+};
