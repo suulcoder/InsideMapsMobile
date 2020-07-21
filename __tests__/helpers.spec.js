@@ -1,4 +1,4 @@
-import {getDistance,calculateDistance} from "../js/helpers";
+import {getDistance,calculateDistance} from "../src/helpers";
 
 describe("helpers test", () => {
     it("should get geo distance between 2 points", () => {

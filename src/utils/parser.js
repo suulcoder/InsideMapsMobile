@@ -3,8 +3,8 @@ export const bodyParser = (dic) => {
     for (let property in dic) {
         let encodedKey = encodeURIComponent(property);
         let encodedValue = encodeURIComponent(dic[property]);
-        formBody.push(encodedKey + "=" + encodedValue);
+        formBody.push(encodedKey + '=' + encodedValue);
     }
-    formBody = formBody.join("&");
-    return formBody
-}
+    formBody = formBody.join('&');
+    return formBody;
+};

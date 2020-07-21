@@ -224,6 +224,7 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-ddb-mapper:2.7.7'
     implementation 'com.amazonaws:aws-android-sdk-cognito:2.7.7'
     implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.7.7'
+    implementation project(':react-native-vector-icons')
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group: 'com.facebook.fbjni'
@@ -254,3 +255,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

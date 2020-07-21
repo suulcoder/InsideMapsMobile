@@ -11,7 +11,7 @@
 * Ensure you have android sdk setup 
 * Ensure that android phone is connected to computer (it doesn't seem to work in the android emulator)
 * Run `yarn start` first
-* Run `yarn react-native run-android` on separate terminal
+* Run `yarn android` on separate terminal
 
 NB: Didn't try to run on iphone though in theory it should work. 
 
