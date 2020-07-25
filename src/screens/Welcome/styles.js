@@ -1,16 +1,24 @@
 import {StyleSheet} from 'react-native';
+import { colors } from '../../../configuration';
 
 const styles = StyleSheet.create({
+    
     layout: {
         height: '100%',
         padding: 30,
-        backgroundColor: '#438FCB',
+        justifyContent: 'center',
     },
     header: {
         fontFamily: 'Tahu!',
         fontSize: 55,
         color: '#fff',
+        marginTop: 60,
         textAlign: 'center',
+    },
+    ImageBackground:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        opacity: 0.9,
     },
     subHeader: {
         fontFamily: 'Tahu!',
@@ -21,6 +29,7 @@ const styles = StyleSheet.create({
     image: {
         paddingTop: 20,
         justifyContent: 'center',
+        marginTop: 20,
         alignItems: 'center',
     },
     buttonContainer: {
@@ -31,18 +40,20 @@ const styles = StyleSheet.create({
     loginButton: {
         marginTop: 10,
         width: '100%',
-        backgroundColor: '#4caf50',
+        backgroundColor: colors.secondary,
+        borderColor: colors.secondary,
         borderRadius: 30,
     },
     registerButton: {
         marginTop: 10,
         width: '100%',
-        backgroundColor: '#455a64',
+        backgroundColor: colors.primary,
+        borderColor: colors.primary,
         borderRadius: 30,
     },
     mainImage: {
-        width: 240,
-        height: 240,
+        width: 130,
+        height: 130,
     },
 });
 

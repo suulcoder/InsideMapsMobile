@@ -17,16 +17,18 @@ import SignUp from './src/screens/SignUp';
 import Home from './src/screens/Home';
 import Search from './src/screens/Search';
 import Profile from './src/screens/Profile';
+import Scan from './src/screens/Scan';
 
 // Redux
 import * as selectors from './src/redux/root-reducer';
+import { colors } from './configuration';
 
 const Tab = createBottomTabNavigator();
 const AuthStack = createStackNavigator();
 function AuthStackNavigator() {
     return (
         <>
-            <AuthStack.Navigator screenOptions={{headerShown: true}}>
+            <AuthStack.Navigator screenOptions={{headerShown: false}}>
                 <AuthStack.Screen name="Welcome" component={Welcome} />
                 <AuthStack.Screen name="Login" component={Login} />
                 <AuthStack.Screen name="SignUp" component={SignUp} />
@@ -39,8 +41,9 @@ const HomeStack = createStackNavigator();
 function HomeStackNavigator() {
     return (
         <>
-            <HomeStack.Navigator>
+            <HomeStack.Navigator screenOptions={{headerShown: false}}>
                 <HomeStack.Screen name="Home" component={Home} />
+                <HomeStack.Screen name="Scan" component={Scan} />
             </HomeStack.Navigator>
         </>
     );
@@ -53,6 +56,17 @@ function SeachStackNavigator() {
             <SeachStack.Navigator>
                 <SeachStack.Screen name="Search" component={Search} />
             </SeachStack.Navigator>
+        </>
+    );
+}
+
+const InformationStack = createStackNavigator();
+function InformationStackNavigator() {
+    return (
+        <>
+            <InformationStack.Navigator>
+                <InformationStack.Screen name="Information" component={Information} />
+            </InformationStack.Navigator>
         </>
     );
 }
@@ -84,13 +98,14 @@ const App = ({isAuthenticated = false}) => {
                         screenOptions={({route}) => ({
                             tabBarIcon: ({focused, color, size}) => {
                                 let iconName;
-                                if (route.name === 'Home') {
-                                    iconName = 'home';
-                                } else if (route.name === 'Search') {
+                                if (route.name === 'Search') {
                                     iconName = 'search';
+                                } else if (route.name === 'Navigate') {
+                                    iconName = 'map-marked-alt'; 
                                 } else if (route.name === 'Profile') {
                                     iconName = 'user-circle';
-                                }
+                                } 
+                                
                                 return (
                                     <FontAwesome5
                                         name={iconName}
@@ -101,16 +116,16 @@ const App = ({isAuthenticated = false}) => {
                             },
                         })}
                         tabBarOptions={{
-                            activeTintColor: 'blue',
+                            activeTintColor: colors.secondary,
                             inactiveTintColor: 'gray',
                         }}>
                         <Tab.Screen
-                            name="Home"
-                            component={HomeStackNavigator}
-                        />
-                        <Tab.Screen
                             name="Search"
                             component={SeachStackNavigator}
+                        />
+                        <Tab.Screen
+                            name="Navigate"
+                            component={HomeStackNavigator}
                         />
                         <Tab.Screen
                             name="Profile"
