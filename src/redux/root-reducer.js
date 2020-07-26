@@ -1,8 +1,12 @@
 import {combineReducers} from 'redux';
 import auth, * as authSelectors from './auth/auth.reducer';
+import search, * as searchSelectors from './search/search.reducer';
+import location, * as locationSelectors from './location/location.reducer';
 
 const rootReducer = combineReducers({
     auth,
+    search,
+    location,
 });
 
 export default rootReducer;
@@ -26,3 +30,14 @@ export const getRefreshingError = (state) =>
 export const getSignUpError = (state) =>
     authSelectors.getSignUpError(state.auth);
 export const isAuthenticated = (state) => getAuthToken(state) !== null;
+
+export const getFilteredPlace = (state, id) =>
+    searchSelectors.getFilteredPlace(state.search, id);
+export const getFilteredPlaces = (state) =>
+    searchSelectors.getFilteredPlaces(state.search);
+export const getIsSearching = (state) =>
+    searchSelectors.getIsSearching(state.search);
+export const getSearchingError = (state) => searchSelectors(state.search);
+
+export const getLocation = (state) =>
+    locationSelectors.getLocation(state.location);

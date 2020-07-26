@@ -18,10 +18,11 @@ import Home from './src/screens/Home';
 import Search from './src/screens/Search';
 import Profile from './src/screens/Profile';
 import Scan from './src/screens/Scan';
+import Information from './src/screens/Information';
 
 // Redux
 import * as selectors from './src/redux/root-reducer';
-import { colors } from './configuration';
+import {colors} from './configuration';
 
 const Tab = createBottomTabNavigator();
 const AuthStack = createStackNavigator();
@@ -44,6 +45,7 @@ function HomeStackNavigator() {
             <HomeStack.Navigator screenOptions={{headerShown: false}}>
                 <HomeStack.Screen name="Home" component={Home} />
                 <HomeStack.Screen name="Scan" component={Scan} />
+                <HomeStack.Screen name="Information" component={Information} />
             </HomeStack.Navigator>
         </>
     );
@@ -56,17 +58,6 @@ function SeachStackNavigator() {
             <SeachStack.Navigator>
                 <SeachStack.Screen name="Search" component={Search} />
             </SeachStack.Navigator>
-        </>
-    );
-}
-
-const InformationStack = createStackNavigator();
-function InformationStackNavigator() {
-    return (
-        <>
-            <InformationStack.Navigator>
-                <InformationStack.Screen name="Information" component={Information} />
-            </InformationStack.Navigator>
         </>
     );
 }
@@ -101,11 +92,11 @@ const App = ({isAuthenticated = false}) => {
                                 if (route.name === 'Search') {
                                     iconName = 'search';
                                 } else if (route.name === 'Navigate') {
-                                    iconName = 'map-marked-alt'; 
+                                    iconName = 'map-marked-alt';
                                 } else if (route.name === 'Profile') {
                                     iconName = 'user-circle';
-                                } 
-                                
+                                }
+
                                 return (
                                     <FontAwesome5
                                         name={iconName}
