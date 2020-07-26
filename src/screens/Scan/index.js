@@ -18,9 +18,9 @@ const Scan = ({navigation, setData}) => {
             if (
                 location.id &&
                 location.node &&
-                location.x &&
-                location.y &&
-                location.z
+                location.x != null &&
+                location.y != null &&
+                location.z != null
             ) {
                 setData(location);
                 navigation.push('Home');
