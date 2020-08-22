@@ -2,9 +2,9 @@ import React from 'react';
 import {Card, Text} from '@ui-kitten/components';
 import styles from './styles';
 
-const PlacePreview = ({item, onPress}) => {
+const PlacePreview = ({item, onSelectDestination}) => {
     return (
-        <Card onPress={onPress(item._id)} style={styles.card}>
+        <Card style={styles.card} onPress={() => onSelectDestination(item._id)}>
             <Text>{item.name}</Text>
         </Card>
     );

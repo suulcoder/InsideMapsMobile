@@ -16,13 +16,15 @@ function* fetchDestinationPath(action) {
         const {mapId, startNode} = location;
         const {endNode} = action.payload;
 
+        console.log(endNode, mapId, startNode);
+
         if (isAuth) {
             //const token = yield select(selectors.getAuthToken);
             const response = yield call(
                 fetch,
                 `${API_BASE_URL}/navigation/find-shortest-path/${mapId}`,
                 {
-                    method: 'GET',
+                    method: 'POST',
                     body: bodyParser({
                         startNode,
                         endNode,

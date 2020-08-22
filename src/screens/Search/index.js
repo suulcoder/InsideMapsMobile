@@ -18,6 +18,7 @@ import {
     getLocation,
 } from '../../redux/root-reducer';
 import {startSearchingPlaces} from '../../redux/search/search.actions';
+import {startSettingDestinationPath} from '../../redux/location/location.actions';
 
 const Search = ({
     isSearching,
@@ -25,17 +26,19 @@ const Search = ({
     navigation,
     dataList,
     searchPlace,
+    setDestination,
 }) => {
     const [searchQuery, changeSearchQuery] = useState('');
 
     const changeQueryField = (query) => {
-        //console.log(query);
         changeSearchQuery(query);
         searchPlace(query);
     };
 
-    const navigateToNavInformation = () => {
-        navigation.navigate('Information');
+    const navigateToNavInformation = id => {
+        console.log('Going to Nav to End Node>', id);
+        setDestination(id);
+        //navigation.navigate('Information');
     };
 
     return (
@@ -68,17 +71,14 @@ const Search = ({
                             <>
                                 <ScrollView>
                                     {dataList &&
-                                        dataList.map((item, i) => (
+                                        dataList.map((item, index) => (
                                             <TouchableOpacity
-                                                key={i}
+                                                key={item._id}
                                                 activeOpacity={0.8}
-                                                style={styles.item}
-                                                onPress={() =>
-                                                    navigateToNavInformation()
-                                                }>
+                                                style={styles.item}>
                                                 <PlacePreview
                                                     item={item}
-                                                    onPress={(id) =>
+                                                    onSelectDestination={(id) =>
                                                         navigateToNavInformation(
                                                             id,
                                                         )
@@ -109,6 +109,9 @@ export default connect(
     (dispatch) => ({
         searchPlace(query) {
             dispatch(startSearchingPlaces(query));
+        },
+        setDestination(id) {
+            dispatch(startSettingDestinationPath(id));
         },
     }),
 )(Search);
