@@ -4,7 +4,7 @@ import styles from './styles';
 
 const PlacePreview = ({item, onPress}) => {
     return (
-        <Card onPress={onPress} style={styles.card}>
+        <Card onPress={onPress(item._id)} style={styles.card}>
             <Text>{item.name}</Text>
         </Card>
     );

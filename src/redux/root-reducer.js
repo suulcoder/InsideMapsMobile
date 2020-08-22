@@ -41,3 +41,5 @@ export const getSearchingError = (state) => searchSelectors(state.search);
 
 export const getLocation = (state) =>
     locationSelectors.getLocation(state.location);
+export const getDestinationPath = (state) =>
+    locationSelectors.getDestinationPath(state.location);

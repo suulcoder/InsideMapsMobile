@@ -76,7 +76,14 @@ const Search = ({
                                                 onPress={() =>
                                                     navigateToNavInformation()
                                                 }>
-                                                <PlacePreview item={item} onPress={() => navigateToNavInformation()} />
+                                                <PlacePreview
+                                                    item={item}
+                                                    onPress={(id) =>
+                                                        navigateToNavInformation(
+                                                            id,
+                                                        )
+                                                    }
+                                                />
                                             </TouchableOpacity>
                                         ))}
                                 </ScrollView>

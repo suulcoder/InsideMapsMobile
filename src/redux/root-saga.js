@@ -8,12 +8,15 @@ import {
 
 import {watchFilteredPlaces} from './search/search.sagas';
 
+import {watchFetchDestinationPath} from './location/location.sagas';
+
 function* rootSaga() {
     yield all([
         fork(watchLoginStarted),
         fork(watchRefreshTokenStarted),
         fork(watchSignUpStarted),
         fork(watchFilteredPlaces),
+        fork(watchFetchDestinationPath),
     ]);
 }
 

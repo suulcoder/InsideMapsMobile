@@ -13,6 +13,7 @@ const API_BASE_URL = API_URL + 'api/v1/';
 function* fetchFilteredPlaces(action) {
     try {
         const isAuth = yield select(selectors.isAuthenticated);
+        const {mapId} = yield select(selectors.getLocation);
 
         if (isAuth) {
             const token = yield select(selectors.getAuthToken);
@@ -20,7 +21,7 @@ function* fetchFilteredPlaces(action) {
 
             const response = yield call(
                 fetch,
-                `${API_BASE_URL}/marker/?name=${query}`,
+                `${API_BASE_URL}/marker/?name=${query}&mapId=${mapId}`,
                 {
                     method: 'GET',
                     headers: {
@@ -45,7 +46,7 @@ function* fetchFilteredPlaces(action) {
             }
         }
     } catch (error) {
-        console.log(error)
+        console.log(error);
         yield put(actions.failSearchingPlaces(error));
     }
 }

@@ -13,9 +13,27 @@ const location = (state = null, action) => {
     }
 };
 
+const destinationPath = (state = null, action) => {
+    switch (action.type) {
+        case types.SET_DESTINATION_PATH_COMPLETED: {
+            const {path} = action.payload;
+            return path;
+        }
+        case types.SET_DESTINATION_PATH_STARTED:
+        case types.SET_DESTINATION_PATH_FAILED: {
+            return null;
+        }
+        default: {
+            return state;
+        }
+    }
+};
+
 export default combineReducers({
     location,
+    destinationPath,
     // combine reducers for now, 'cause more reducers will be added later
 });
 
 export const getLocation = (state) => state.location;
+export const getDestinationPath = (state) => state.destinationPath;
