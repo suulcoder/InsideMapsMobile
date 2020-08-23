@@ -51,6 +51,13 @@ const styles = StyleSheet.create({
         borderColor: colors.primary,
         borderRadius: 30,
     },
+    scanButton: {
+        marginTop: 10,
+        width: '100%',
+        backgroundColor: colors.primary,
+        borderColor: colors.primary,
+        borderRadius: 30,
+    },
     mainImage: {
         width: 130,
         height: 130,

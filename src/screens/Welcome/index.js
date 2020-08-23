@@ -27,14 +27,21 @@ export default ({navigation, reset}) => {
                                 //reset();
                                 navigation.navigate('Login');
                             }}>
-                            Login
+                            Iniciar Sesión
                         </Button>
                         <Button
                             style={styles.registerButton}
                             appearance="filled"
                             //status="warning"
                             onPress={() => navigation.navigate('SignUp')}>
-                            Register
+                            Registrarse
+                        </Button>
+                        <Button
+                            style={styles.scanButton}
+                            appearance="filled"
+                            //status="warning"
+                            onPress={() => navigation.navigate('Scan')}>
+                            Empezar a navegar
                         </Button>
                     </View>
                 </View>
