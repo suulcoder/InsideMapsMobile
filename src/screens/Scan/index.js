@@ -16,11 +16,10 @@ const Scan = ({navigation, setData}) => {
             console.log(e.data);
             const location = JSON.parse(e.data);
             if (
-                location.id &&
-                location.node &&
-                location.x != null &&
-                location.y != null &&
-                location.z != null
+                (location.mapId &&
+                    location.startNode &&
+                    location.coordinates !== null) ||
+                location.coordinates.length === 3
             ) {
                 setData(location);
                 navigation.push('Home');
@@ -28,14 +27,14 @@ const Scan = ({navigation, setData}) => {
                 changeError('The code is not valid');
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
             changeError('The code is not valid');
         }
     };
 
     return (
         <QRCodeScanner
-            onRead={onSuccess}
+            onRead={e => onSuccess(e)}
             topContent={
                 <Text style={styles.centerText}>
                     To find your location search for a{' '}
