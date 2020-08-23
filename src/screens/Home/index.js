@@ -29,15 +29,15 @@ const Home = ({navigation, reset, isLocalized}) => {
                                 />
                             </View>
                             <Text style={styles.text}>
-                                We don't have your location yet. Search for a QR
-                                code in the building and start navigating with
-                                Indoor Maps.
+                                Aún no tenemos su ubicación. Busca un QR
+                                código en el edificio y empieza a navegar con
+                                Inside Maps.
                             </Text>
                         </View>
                         <View style={styles.scanInfo}>
                             <View style={styles.scanMessage}>
                                 <Text style={styles.scanText}>
-                                    Click this icon to scan your code
+                                    Haz clic en este icono para escanear su código
                                 </Text>
                                 <FontAwesome5
                                     name={'arrow-right'}
@@ -50,7 +50,7 @@ const Home = ({navigation, reset, isLocalized}) => {
                 ) : (
                     <View style={styles.layout}>
                         <Text style={styles.message}>
-                            You should be localized now
+                            Deberías estar localizado ahora
                         </Text>
                     </View>
                 )}

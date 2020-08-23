@@ -47,7 +47,7 @@ const Search = ({
                 <>
                     <View style={styles.inputContainer}>
                         <Input
-                            placeholder="Search a place..."
+                            placeholder="Ingresa el nombre del lugar"
                             value={searchQuery}
                             onChangeText={(text) => changeQueryField(text)}
                         />
@@ -62,7 +62,7 @@ const Search = ({
                         {!(searchQuery.length > 0) && !isSearching && (
                             <View style={styles.isSearchingContainer}>
                                 <Text>
-                                    Try searching the place you want to go...
+                                    Trata de buscar el lugar al que quieres ir...
                                 </Text>
                             </View>
                         )}
@@ -93,7 +93,7 @@ const Search = ({
                 </>
             ) : (
                 <View style={styles.container}>
-                    <Text>{'Please, scan your initial location first'}</Text>
+                    <Text>{'Escanea tu ubicación inicial para empezar a navegar'}</Text>
                 </View>
             )}
         </View>

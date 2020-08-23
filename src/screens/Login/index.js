@@ -22,7 +22,7 @@ const Login = ({onSubmit, isLoading, error = null}) => {
                         style={styles.logoImg}
                         source={require('../../../assets/images/logo.png')}
                     />
-                    <Text style={styles.title}>Sign In</Text>
+                    <Text style={styles.title}>Ingresar</Text>
                     {/* <Text style={styles.subTitle}>Essentials</Text> */}
                     <View
                         style={{
@@ -47,7 +47,7 @@ const Login = ({onSubmit, isLoading, error = null}) => {
                                 ]}
                                 style={styles.input}
                                 secureTextEntry={true}
-                                placeholder={'Password'}
+                                placeholder={'Contraseña'}
                                 onChangeText={setPassword}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
@@ -59,7 +59,7 @@ const Login = ({onSubmit, isLoading, error = null}) => {
                     <View style={styles.widthLimit}>
                         {isLoading ? (
                             <View>
-                                <Text style={styles.error}>{'LOADING...'}</Text>
+                                <Text style={styles.error}>{'Gargando...'}</Text>
                             </View>
                         ) : (
                             <Button
@@ -72,11 +72,11 @@ const Login = ({onSubmit, isLoading, error = null}) => {
                     </View>
                 </View>
                 <Text style={styles.footText}>
-                    Don't have account?{' '}
+                    ¿No tienes una cuenta?{' '}
                     <Text
                         style={styles.extraBold}
-                        onPress={() => Navigation.navigate('SignUp')}>
-                        Sign Up
+                        onPress={() => Navigation.navigate('Registrate')}>
+                        Registrate
                     </Text>
                     .
                 </Text>
@@ -96,9 +96,9 @@ export default connect(
             if (email && password) {
                 dispatch(actions.startLogin(email, password));
             } else if (!email) {
-                dispatch(actions.failLogin('WRITE A VALID EMAIL'));
+                dispatch(actions.failLogin('Porfavor ingresa un email válida'));
             } else if (!password) {
-                dispatch(actions.failLogin('WRITE A VALID PASSWORD'));
+                dispatch(actions.failLogin('Porfavor ingresa una contraseña válida'));
             }
         },
     }),

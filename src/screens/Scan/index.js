@@ -1,3 +1,4 @@
+
 'use strict';
 
 import React, {useState} from 'react';
@@ -37,9 +38,9 @@ const Scan = ({navigation, setData}) => {
             onRead={e => onSuccess(e)}
             topContent={
                 <Text style={styles.centerText}>
-                    To find your location search for a{' '}
-                    <Text style={styles.textBold}>QR code</Text> in the building
-                    and then scan it
+                    Para encontrar tu ubicación, busca un{' '}
+                    <Text style={styles.textBold}>código QR </Text> 
+                    en el edificio y luego escanéalo
                 </Text>
             }
             bottomContent={

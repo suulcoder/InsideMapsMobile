@@ -30,7 +30,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                         style={styles.logoImg}
                         source={require('../../../assets/images/logo.png')}
                     />
-                    <Text style={styles.title}>Sign Up</Text>
+                    <Text style={styles.title}>Regístrate</Text>
                     {/* <Text style={styles.subTitle}>Essentials</Text> */}
                     <View
                         style={{
@@ -44,7 +44,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                                     styles.inputIconLock,
                                 ]}
                                 style={styles.input}
-                                placeholder={'Username'}
+                                placeholder={'Nombre de usuario'}
                                 onChangeText={setUsername}
                             />
                             <Input
@@ -62,7 +62,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                                     styles.inputIconLock,
                                 ]}
                                 style={styles.input}
-                                placeholder={'First Name'}
+                                placeholder={'Primer nombre'}
                                 onChangeText={setFirstName}
                             />
                             <Input
@@ -71,7 +71,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                                     styles.inputIconLock,
                                 ]}
                                 style={styles.input}
-                                placeholder={'Last Name'}
+                                placeholder={'Segundo nombre'}
                                 onChangeText={setLastName}
                             />
                             <Input
@@ -81,7 +81,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                                 ]}
                                 style={styles.input}
                                 secureTextEntry={true}
-                                placeholder={'Password'}
+                                placeholder={'Contraseña'}
                                 onChangeText={setPassword}
                             />
                             <Input
@@ -91,7 +91,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                                 ]}
                                 style={styles.input}
                                 secureTextEntry={true}
-                                placeholder={'Confirm password'}
+                                placeholder={'Confirma tu contraseña'}
                                 onChangeText={setConfirmPassword}
                             />
                             <Input
@@ -107,7 +107,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
 
                             <View style={styles.row}>
                                 <Text style={styles.text}>
-                                    {'Gender:    M '}{' '}
+                                    {'Género:    M '}{' '}
                                 </Text>
                                 <Switch
                                     trackColor={{
@@ -128,7 +128,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                     <View style={styles.widthLimit}>
                         {isLoading ? (
                             <View>
-                                <Text style={styles.error}>{'LOADING...'}</Text>
+                                <Text style={styles.error}>{'Cargando...'}</Text>
                             </View>
                         ) : (
                             <Button
@@ -146,17 +146,17 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                                         confirmPassword,
                                     )
                                 }>
-                                Sign Up
+                                Registrarse
                             </Button>
                         )}
                     </View>
                 </View>
                 <Text style={styles.footText}>
-                    Already have account?{' '}
+                    Ya tienes una cuenta?{' '}
                     <Text
                         style={styles.extraBold}
                         onPress={() => Navigation.navigate('Login')}>
-                        Sign In
+                        Ingresar
                     </Text>
                 </Text>
             </View>

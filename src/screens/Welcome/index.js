@@ -11,7 +11,7 @@ export default ({navigation, reset}) => {
             <ImageBackground source={image} style={styles.ImageBackground}>
                 <View style={styles.layout}>
                     <Text style={styles.header}>Inside Maps</Text>
-                    <Text style={styles.subHeader}>a new way to navigate</Text>
+                    <Text style={styles.subHeader}>Una nueva forma de navegar</Text>
                     <View style={styles.image}>
                         <Image
                             source={require('../../../assets/images/logo.png')}

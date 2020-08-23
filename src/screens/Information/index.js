@@ -34,7 +34,7 @@ const InfoAR = () => {
  */}
 
             <ViroText
-                text="Follow the line!"
+                text="Sigue la línea!"
                 width={2}
                 height={2}
                 position={[0, 0, -3]}
