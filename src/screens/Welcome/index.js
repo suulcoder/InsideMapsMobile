@@ -3,6 +3,8 @@ import {SafeAreaView, View, Text, Image, ImageBackground } from 'react-native';
 import {Button} from '@ui-kitten/components';
 import styles from './styles';
 
+import { navigate } from '../../navigation';
+
 const image = { uri: "https://i.pinimg.com/originals/62/c4/aa/62c4aad6e71c57988b47a7e2c7c4f66a.jpg" };
 
 export default ({navigation, reset}) => {
@@ -35,13 +37,6 @@ export default ({navigation, reset}) => {
                             //status="warning"
                             onPress={() => navigation.navigate('SignUp')}>
                             Registrarse
-                        </Button>
-                        <Button
-                            style={styles.scanButton}
-                            appearance="filled"
-                            //status="warning"
-                            onPress={() => navigation.navigate('Scan')}>
-                            Empezar a navegar
                         </Button>
                     </View>
                 </View>

@@ -33,7 +33,6 @@ function AuthStackNavigator() {
                 <AuthStack.Screen name="Welcome" component={Welcome} />
                 <AuthStack.Screen name="Login" component={Login} />
                 <AuthStack.Screen name="SignUp" component={SignUp} />
-                <AuthStack.Screen name="Scan" component={Scan} />
             </AuthStack.Navigator>
         </>
     );
