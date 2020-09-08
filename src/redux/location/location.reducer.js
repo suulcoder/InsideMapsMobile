@@ -16,7 +16,7 @@ const location = (state = null, action) => {
 const destinationPath = (state = null, action) => {
     switch (action.type) {
         case types.SET_DESTINATION_PATH_COMPLETED: {
-            const {path} = action.payload;
+            const path = action.payload;
             return path;
         }
         case types.SET_DESTINATION_PATH_STARTED:

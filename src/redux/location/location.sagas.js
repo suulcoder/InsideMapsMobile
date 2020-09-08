@@ -25,10 +25,11 @@ function* fetchDestinationPath(action) {
                 `${API_BASE_URL}/navigation/find-shortest-path/${mapId}`,
                 {
                     method: 'POST',
-                    body: bodyParser({
+                    body: JSON.stringify({startNode, endNode}),
+                    /* bodyParser({
                         startNode,
                         endNode,
-                    }),
+                    }), */
                     headers: {
                         'Content-Type': 'application/json',
                         //Authorization: `JWT ${token}`,
@@ -38,9 +39,10 @@ function* fetchDestinationPath(action) {
 
             if (response.status === 200) {
                 const result = yield response.json();
-                console.log(result);
                 yield put(actions.completeSettingDestinationPath(result));
             } else {
+                console.log('Result error code:', response.status);
+
                 yield put(
                     actions.failSettingDestinationPath(
                         'Fail retrieving destination path',

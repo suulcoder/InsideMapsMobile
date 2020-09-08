@@ -25,6 +25,15 @@ const InfoAR = ({path}) => {
                 position={[0, 0, -3]}
             />
             {/* Render lines here */}
+            <ViroPolyline
+                position={[0, 0, -2]}
+                points={[
+                    [0, 0, 0],
+                    [0.5, 0.5, 0.5],
+                    [1, 0, 0],
+                ]}
+                thickness={0.2}
+            />
         </ViroARScene>
     );
 };

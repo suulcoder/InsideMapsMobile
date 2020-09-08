@@ -14,20 +14,24 @@ const Scan = ({navigation, setData}) => {
     const onSuccess = (e) => {
         try {
             console.log(e.data);
-            const location = JSON.parse(e.data);
+            const qrLocation = JSON.parse(e.data);
+            const {map_id, node_id, coordinates} = qrLocation;
             if (
-                (location.mapId &&
-                    location.startNode &&
-                    location.coordinates !== null) ||
-                location.coordinates.length === 3
+                (map_id && node_id && coordinates !== null) ||
+                coordinates.length === 3
             ) {
+                const location = {
+                    startNode: node_id,
+                    mapId: map_id,
+                    coordinates,
+                };
                 setData(location);
                 navigation.push('Home');
             } else {
                 changeError('The code is not valid');
             }
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             changeError('The code is not valid');
         }
     };
