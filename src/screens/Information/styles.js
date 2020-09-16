@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       borderColor: colors.primary,
     },
-    scanButton:{
+    button:{
       position: 'absolute',
       backgroundColor: colors.secondary,
       top: 20,
@@ -17,14 +17,6 @@ const styles = StyleSheet.create({
       padding: 15,
       borderRadius: 25,
     },
-    deleteButton:{
-        position: 'absolute',
-        backgroundColor: colors.secondary,
-        bottom: 20,
-        right: 10,
-        padding: 15,
-        borderRadius: 25,
-      },
     text:{
         textAlign: 'justify',
         fontSize: 15
@@ -53,10 +45,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 20,
         right: 80,
-    },
-    button:{
-      justifyContent: 'center',
-      alignItems: 'center',
     },
     ImageBackground:{
         justifyContent: 'center',
