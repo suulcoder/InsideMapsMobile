@@ -23,6 +23,9 @@ const destinationPath = (state = null, action) => {
         case types.SET_DESTINATION_PATH_FAILED: {
             return null;
         }
+        case types.DELETE_CURRENT_NODE: {
+            //Dont know yet
+        }
         default: {
             return state;
         }
