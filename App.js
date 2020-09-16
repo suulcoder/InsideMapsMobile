@@ -45,7 +45,6 @@ function HomeStackNavigator() {
             <HomeStack.Navigator screenOptions={{headerShown: false}}>
                 <HomeStack.Screen name="Home" component={Home} />
                 <HomeStack.Screen name="Scan" component={Scan} />
-                <HomeStack.Screen name="Information" component={Information} />
             </HomeStack.Navigator>
         </>
     );
@@ -57,6 +56,7 @@ function SeachStackNavigator() {
         <>
             <SeachStack.Navigator>
                 <SeachStack.Screen name="Search" component={Search} />
+                <HomeStack.Screen name="Information" component={Information} />
             </SeachStack.Navigator>
         </>
     );

@@ -39,7 +39,7 @@ function* fetchDestinationPath(action) {
 
             if (response.status === 200) {
                 const result = yield response.json();
-                yield put(actions.completeSettingDestinationPath(result));
+                yield put(actions.completeSettingDestinationPath(result.result.path));
             } else {
                 console.log('Result error code:', response.status);
 

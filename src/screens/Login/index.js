@@ -59,7 +59,7 @@ const Login = ({onSubmit, isLoading, error = null}) => {
                     <View style={styles.widthLimit}>
                         {isLoading ? (
                             <View>
-                                <Text style={styles.error}>{'Gargando...'}</Text>
+                                <Text style={styles.error}>{'Cargando...'}</Text>
                             </View>
                         ) : (
                             <Button

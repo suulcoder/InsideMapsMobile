@@ -11,10 +11,11 @@ import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {connect} from 'react-redux';
 import * as selectors from '../../redux/root-reducer';
+import { deleteCurrentNode } from '../../redux/location/location.actions';
 
 const image = {uri: 'https://miro.medium.com/max/2400/0*VUGGU1mPbQG2QrFe.png'};
 
-const Home = ({navigation, reset, isLocalized}) => {
+const Home = ({navigation, reset, isLocalized, del}) => {
     return (
         <SafeAreaView style={styles.layout}>
             <ImageBackground source={image} style={styles.ImageBackground}>
@@ -69,5 +70,9 @@ export default connect(
     (state) => ({
         isLocalized: selectors.getLocation(state) !== null,
     }),
-    (dispatch) => ({}),
+    (dispatch) => ({
+        del(){
+            dispatch(deleteCurrentNode())
+        }
+    }),
 )(Home);

@@ -64,7 +64,6 @@ export default connect(
             //Data in the QR code must have the following format:
             //It must be an string to Parse with JSON. like this example:
             //{id: 'vsdf-sdf3e92039-dv16s5',node: '235-8fdsdf-dsf4sdf6',x: 165.8,y: 9997.8,z: 3,inside_maps:true}
-            console.log(data);
             dispatch(setInitialLocation(data));
 
             //dispatch(actions.change_location(data));

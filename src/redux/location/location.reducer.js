@@ -23,6 +23,15 @@ const destinationPath = (state = null, action) => {
         case types.SET_DESTINATION_PATH_FAILED: {
             return null;
         }
+        case types.CURRENT_NODE_DELETED: {
+            if(state && state.path){
+                if(state.path.length===1){
+                    return null
+                }
+                return {...state, path:state.path.slice(1)}
+            }
+            return state;                
+        }
         default: {
             return state;
         }
