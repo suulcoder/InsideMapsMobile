@@ -24,7 +24,7 @@ const destinationPath = (state = null, action) => {
             return null;
         }
         case types.DELETE_CURRENT_NODE: {
-            //Dont know yet
+            return {...state, path:path.slice(1)}
         }
         default: {
             return state;
