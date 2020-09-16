@@ -30,7 +30,7 @@ const destinationPath = (state = null, action) => {
                 }
                 return {...state, path:state.path.slice(1)}
             }
-            return state;                
+            return state;              
         }
         default: {
             return state;
