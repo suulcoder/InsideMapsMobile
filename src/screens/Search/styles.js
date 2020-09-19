@@ -1,15 +1,18 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../../configuration';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        borderColor: colors.primary,
     },
     item: {
         flex: 1,
         justifyContent: 'center',
     },
     inputContainer: {
-        marginTop: -6,
+        marginTop: 0,
+        backgroundColor: colors.white,
     },
     isSearchingContainer: {
         alignItems: 'center',
@@ -25,6 +28,11 @@ const styles = StyleSheet.create({
     icon: {
         width: 30,
         height: 30,
+    },
+    mainImage: {
+        width: 120,
+        height: 120,
+        marginBottom: 20,
     },
 });
 

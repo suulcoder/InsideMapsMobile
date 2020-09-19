@@ -7,8 +7,8 @@
 export const API_URL = 'https://inside-maps-api.herokuapp.com/'
 
 export const colors = {             //based on triada
-    primary: '#02121B',
-    secondary: '#540A08',
+    primary: '#607d8b',
+    secondary: '#2196f3',
     terceary: '#1B1C05',
     suplementary: '#124269',
     complementary: '#656902',

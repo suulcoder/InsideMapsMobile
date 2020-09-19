@@ -14,12 +14,12 @@
 * Run `yarn android` on separate terminal
 
 NB: Didn't try to run on iphone though in theory it should work. 
-
+<!-- 
 ### Demo ###
 
 ![result](https://github.com/suulcoder/InsideMapsMobile/blob/master/assets/images/sprints/sprint4.jpg?raw=true)
 
-Video: [link](https://www.youtube.com/watch?v=FG93Na4UX24)
+Video: [link](https://www.youtube.com/watch?v=FG93Na4UX24) -->
 
 ### Who do I talk to? ###
 

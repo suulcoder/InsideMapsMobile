@@ -111,12 +111,12 @@ const App = ({isAuthenticated = false}) => {
                             inactiveTintColor: 'gray',
                         }}>
                         <Tab.Screen
-                            name="Search"
-                            component={SeachStackNavigator}
-                        />
-                        <Tab.Screen
                             name="Navigate"
                             component={HomeStackNavigator}
+                        />
+                        <Tab.Screen
+                            name="Search"
+                            component={SeachStackNavigator}
                         />
                         <Tab.Screen
                             name="Profile"
