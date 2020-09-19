@@ -161,11 +161,22 @@ export const getIsAuthenticating = (state) => state.isAuthenticating;
 export const getIsRegistrating = (state) => state.isRegistrating;
 export const getAuthenticatingError = (state) => state.error;
 export const getAuthUserID = (state) =>
-    state.decoded ? state.decoded.user_id : null;
+    state.decoded ? state.decoded.userId : null;
 export const getAuthExpiration = (state) =>
     state.decoded ? state.decoded.exp : null;
-export const getAuthUsername = (state) =>
+export const getAuthUserUsername = (state) =>
     state.decoded ? state.decoded.username : null;
+export const getAuthUserFirstName = (state) =>
+    state.decoded ? state.decoded.firstname : null;
+export const getAuthUserLastName = (state) =>
+    state.decoded ? state.decoded.lastname : null;
+export const getAuthUserGender = (state) =>
+    state.decoded ? state.decoded.gender : null;
+export const getAuthUserAge = (state) =>
+    state.decoded ? state.decoded.age : null;
+
+
+
 export const getIsRefreshingToken = (state) => state.isRefreshing;
 export const getRefreshingError = (state) => state.refreshingError;
 export const getSignUpError = (state) => state.error_signup;

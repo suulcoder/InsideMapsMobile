@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {ScrollView, View, Image, Text, Switch} from 'react-native';
-import {Button, Input} from '@ui-kitten/components';
+import {ScrollView, View, Image, Switch} from 'react-native';
+import {Button, Input, Text, Spinner} from '@ui-kitten/components';
 import {validateEmail} from '../../utils/validate';
 import * as Navigation from '../../navigation';
 import styles from './styles';
@@ -127,9 +127,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                 <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                     <View style={styles.widthLimit}>
                         {isLoading ? (
-                            <View>
-                                <Text style={styles.error}>{'Cargando...'}</Text>
-                            </View>
+                            <Spinner size="medium" />
                         ) : (
                             <Button
                                 innerStyle={styles.buttonInner}
@@ -155,6 +153,7 @@ const SignUp = ({onSubmit, isLoading, error = null}) => {
                     Ya tienes una cuenta?{' '}
                     <Text
                         style={styles.extraBold}
+                        category="s1"
                         onPress={() => Navigation.navigate('Login')}>
                         Ingresar
                     </Text>
@@ -198,42 +197,42 @@ export default connect(
                             );
                         } else {
                             dispatch(
-                                actions.failRegistration('WRITE A VALID EMAIL'),
+                                actions.failRegistration('Porfavor ingresa un email válido'),
                             );
                         }
                     } else {
-                        dispatch(actions.failRegistration('WRITE A VALID AGE'));
+                        dispatch(actions.failRegistration('Porfavor ingresa una edad válida'));
                     }
                 } else {
-                    dispatch(actions.failRegistration('PASSWORDS MUST MATCH'));
+                    dispatch(actions.failRegistration('Las contraseñas no coinciden, intenta de nuevo'));
                 }
             } else if (!user) {
                 dispatch(
-                    actions.failRegistration('USER FIELD MUST NOT BE EMPTY'),
+                    actions.failRegistration('Porfavor ingresa  un usuario válido'),
                 );
             } else if (!firstname) {
                 dispatch(
-                    actions.failRegistration('NAME FIELD MUST NOT BE EMPTY'),
+                    actions.failRegistration('Porfavor ingresa  un nombre válido'),
                 );
             } else if (!lastname) {
                 dispatch(
                     actions.failRegistration(
-                        'LASTNAME FIELD MUST NOT BE EMPTY',
+                        'Porfavor ingresa  un apellido válido',
                     ),
                 );
             } else if (!password) {
                 dispatch(
                     actions.failRegistration(
-                        'PASSWORD FIELD MUST NOT BE EMPTY',
+                        'Porfavor ingresa  una contraseña válida',
                     ),
                 );
             } else if (!email) {
                 dispatch(
-                    actions.failRegistration('EMAIL FIELD MUST NOT BE EMPTY'),
+                    actions.failRegistration('Porfavor ingresa  un email válido'),
                 );
             } else if (!age) {
                 dispatch(
-                    actions.failRegistration('AGE FIELD MUST NOT BE EMPTY'),
+                    actions.failRegistration('Porfavor ingresa  una edad válida'),
                 );
             }
         },

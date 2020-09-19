@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {ScrollView, View, Image, Text} from 'react-native';
-import {Button, Input} from '@ui-kitten/components';
+import {ScrollView, View, Image} from 'react-native';
+import {Button, Input, Text, Spinner} from '@ui-kitten/components';
 import styles from './styles';
 
 import * as actions from '../../redux/auth/auth.actions';
@@ -58,9 +58,7 @@ const Login = ({onSubmit, isLoading, error = null}) => {
                 <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                     <View style={styles.widthLimit}>
                         {isLoading ? (
-                            <View>
-                                <Text style={styles.error}>{'Gargando...'}</Text>
-                            </View>
+                            <Spinner size="medium" />
                         ) : (
                             <Button
                                 innerStyle={styles.buttonInner}
@@ -75,7 +73,8 @@ const Login = ({onSubmit, isLoading, error = null}) => {
                     ¿No tienes una cuenta?{' '}
                     <Text
                         style={styles.extraBold}
-                        onPress={() => Navigation.navigate('Registrate')}>
+                        category="s1"
+                        onPress={() => Navigation.navigate('SignUp')}>
                         Registrate
                     </Text>
                     .
@@ -96,9 +95,11 @@ export default connect(
             if (email && password) {
                 dispatch(actions.startLogin(email, password));
             } else if (!email) {
-                dispatch(actions.failLogin('Porfavor ingresa un email válida'));
+                dispatch(actions.failLogin('Porfavor ingresa un email válido'));
             } else if (!password) {
-                dispatch(actions.failLogin('Porfavor ingresa una contraseña válida'));
+                dispatch(
+                    actions.failLogin('Porfavor ingresa una contraseña válida'),
+                );
             }
         },
     }),

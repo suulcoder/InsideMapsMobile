@@ -116,9 +116,15 @@ const Search = ({
                     </View>
                 </>
             ) : (
-                <View style={styles.container}>
+                <View style={styles.isSearchingContainer}>
+                    <View style={styles.image}>
+                        <Image
+                            source={require('../../../assets/images/no-search-results.png')}
+                            style={styles.mainImage}
+                        />
+                    </View>
                     <Text>
-                        {'Escanea tu ubicación inicial para empezar a navegar'}
+                        Escanea tu ubicación inicial para empezar a navegar...
                     </Text>
                 </View>
             )}

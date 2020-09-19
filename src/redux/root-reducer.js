@@ -17,8 +17,17 @@ export const getAuthExpiration = (state) =>
     authSelectors.getAuthExpiration(state.auth);
 export const getAuthToken = (state) => authSelectors.getAuthToken(state.auth);
 export const getAuthUserID = (state) => authSelectors.getAuthUserID(state.auth);
-export const getAuthUsername = (state) =>
-    authSelectors.getAuthUsername(state.auth);
+export const getAuthUserUsername = (state) =>
+    authSelectors.getAuthUserUsername(state.auth);
+export const getAuthUserFirstName = (state) =>
+    authSelectors.getAuthUserFirstName(state.auth);
+export const getAuthUserLastName = (state) =>
+    authSelectors.getAuthUserLastName(state.auth);
+export const getAuthUserAge = (state) =>
+    authSelectors.getAuthUserAge(state.auth);
+export const getAuthUserGender = (state) =>
+    authSelectors.getAuthUserGender(state.auth);
+
 export const getIsAuthenticating = (state) =>
     authSelectors.getIsAuthenticating(state.auth);
 export const getIsRefreshingToken = (state) =>

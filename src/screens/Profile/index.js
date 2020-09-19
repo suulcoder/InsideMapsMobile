@@ -5,6 +5,14 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {connect} from 'react-redux';
 import {logout} from '../../redux/auth/auth.actions';
+import {
+    getAuthUserGender,
+    getAuthUserFirstName,
+    getAuthUserUsername,
+    getAuthUserLastName,
+    getAuthUserAge,
+    getAuthUserID,
+} from '../../redux/root-reducer';
 
 import styles from './styles';
 
@@ -37,7 +45,15 @@ const ProfileSetting = ({hint, value}) => (
     </>
 );
 
-const Profile = ({signOut}) => {
+const Profile = ({
+    username,
+    firstName,
+    lastName,
+    gender,
+    age,
+    userId,
+    signOut,
+}) => {
     return (
         <ScrollView
             style={styles.container}
@@ -45,23 +61,33 @@ const Profile = ({signOut}) => {
             <ProfileAvatar onSignOut={signOut} />
             <ProfileSetting
                 style={[styles.profileSetting, styles.section]}
+                hint="ID"
+                value={userId}
+            />
+            <ProfileSetting
+                style={[styles.profileSetting, styles.section]}
+                hint="Usuario"
+                value={username}
+            />
+            <ProfileSetting
+                style={[styles.profileSetting, styles.section]}
                 hint="Nombre"
-                value={'Gus'}
+                value={firstName}
             />
             <ProfileSetting
                 style={styles.profileSetting}
                 hint="Apellido"
-                value={'Mendez'}
+                value={lastName}
             />
             <ProfileSetting
                 style={styles.profileSetting}
                 hint="Género"
-                value={'Hombre'}
+                value={gender == 0 ? 'M' : 'F'}
             />
             <ProfileSetting
                 style={styles.profileSetting}
                 hint="Edad"
-                value={`18`}
+                value={age}
             />
             <Button
                 style={styles.doneButton}
@@ -72,8 +98,17 @@ const Profile = ({signOut}) => {
     );
 };
 
+const mapStateToProps = (state) => ({
+    username: getAuthUserUsername(state),
+    firstName: getAuthUserFirstName(state),
+    lastName: getAuthUserLastName(state),
+    age: getAuthUserAge(state),
+    gender: getAuthUserGender(state),
+    userId: getAuthUserID(state),
+});
+
 const mapDispatchToProps = (dispatch) => ({
     signOut: () => dispatch(logout()),
 });
 
-export default connect(undefined, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

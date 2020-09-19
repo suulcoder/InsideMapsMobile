@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+    error: {
+        color: 'red',
+    },
     container: {
         paddingHorizontal: 10,
         paddingTop: 70,
@@ -9,6 +12,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     widthLimit: {
+        alignContent: 'center',
         flex: 1,
         maxWidth: 275,
         minHeight: 120,
@@ -20,7 +24,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     title: {
-        marginVertical: 20,
+        paddingVertical: 20,
         fontSize: 26,
         textAlign: 'center',
         fontWeight: '500',
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'left',
         height: 40,
-        marginVertical: 4
+        marginVertical: 4,
     },
     footText: {
         marginVertical: 30,
