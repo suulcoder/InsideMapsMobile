@@ -12,13 +12,14 @@ import {connect} from 'react-redux';
 
 import styles from './styles';
 import * as selectors from '../../redux/root-reducer';
+import { deleteCurrentNode } from '../../redux/location/location.actions';
 
 const image = {
     uri:
         'https://i.pinimg.com/originals/51/5a/ce/515ace09ba59e672af37f6fff046c3a8.jpg',
 };
 
-const Home = ({navigation, reset, isLocalized}) => {
+const Home = ({navigation, reset, isLocalized, del}) => {
     return (
         <SafeAreaView style={styles.layout}>
             <ImageBackground source={image} style={styles.imageBackground}>
@@ -71,5 +72,9 @@ export default connect(
     (state) => ({
         isLocalized: selectors.getLocation(state) !== null,
     }),
-    (dispatch) => ({}),
+    (dispatch) => ({
+        del(){
+            dispatch(deleteCurrentNode())
+        }
+    }),
 )(Home);

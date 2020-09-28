@@ -39,7 +39,7 @@ const Search = ({
     const navigateToNavInformation = (id) => {
         console.log('Going to Nav to End Node>', id);
         setDestination(id);
-        navigation.navigate('Information');
+        navigation.push('Information');
     };
 
     return (

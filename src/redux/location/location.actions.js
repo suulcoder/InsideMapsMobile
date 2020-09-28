@@ -19,3 +19,7 @@ export const failSettingDestinationPath = (error) => ({
     type: types.SET_DESTINATION_PATH_FAILED,
     payload: {error},
 });
+
+export const deleteCurrentNode = () => ({
+   type: types.CURRENT_NODE_DELETED, 
+});
