@@ -44,7 +44,16 @@ function HomeStackNavigator() {
         <>
             <HomeStack.Navigator screenOptions={{headerShown: false}}>
                 <HomeStack.Screen name="Home" component={Home} />
-                <HomeStack.Screen name="Scan" component={Scan} />
+                <HomeStack.Screen
+                    name="Scan"
+                    options={{title: 'Scan QR'}}
+                    component={Scan}
+                />
+                <HomeStack.Screen
+                    name="Information"
+                    options={{title: 'Navegación'}}
+                    component={Information}
+                />
             </HomeStack.Navigator>
         </>
     );
@@ -55,8 +64,11 @@ function SeachStackNavigator() {
     return (
         <>
             <SeachStack.Navigator>
-                <SeachStack.Screen name="Search" component={Search} />
-                <HomeStack.Screen name="Information" component={Information} />
+                <SeachStack.Screen
+                    name="Search"
+                    options={{title: 'Búsqueda'}}
+                    component={Search}
+                />
             </SeachStack.Navigator>
         </>
     );
@@ -67,7 +79,11 @@ function ProfileStackNavigator() {
     return (
         <>
             <ProfileStack.Navigator>
-                <ProfileStack.Screen name="Profile" component={Profile} />
+                <ProfileStack.Screen
+                    name="Profile"
+                    options={{title: 'Perfil'}}
+                    component={Profile}
+                />
             </ProfileStack.Navigator>
         </>
     );
@@ -92,7 +108,7 @@ const App = ({isAuthenticated = false}) => {
                                 if (route.name === 'Search') {
                                     iconName = 'search';
                                 } else if (route.name === 'Navigate') {
-                                    iconName = 'map-marked-alt';
+                                    iconName = 'qrcode';
                                 } else if (route.name === 'Profile') {
                                     iconName = 'user-circle';
                                 }
@@ -111,15 +127,18 @@ const App = ({isAuthenticated = false}) => {
                             inactiveTintColor: 'gray',
                         }}>
                         <Tab.Screen
-                            name="Search"
-                            component={SeachStackNavigator}
-                        />
-                        <Tab.Screen
                             name="Navigate"
+                            options={{title: 'Navegación'}}
                             component={HomeStackNavigator}
                         />
                         <Tab.Screen
+                            name="Search"
+                            options={{title: 'Búsqueda'}}
+                            component={SeachStackNavigator}
+                        />
+                        <Tab.Screen
                             name="Profile"
+                            options={{title: 'Perfil'}}
                             component={ProfileStackNavigator}
                         />
                     </Tab.Navigator>

@@ -1,67 +1,53 @@
-import { StyleSheet } from 'react-native';
-import { colors } from '../../../configuration';
-import { normalize } from '../../utils/normalize';
+import {StyleSheet} from 'react-native';
+import {colors} from '../../../configuration';
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderColor: colors.primary,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: colors.primary,
     },
-    scanButton:{
-      position: 'absolute',
-      backgroundColor: colors.secondary,
-      top: 20,
-      right: 10,
-      padding: 15,
-      borderRadius: 25,
-    },
-    deleteButton:{
+    scanButton: {
         position: 'absolute',
         backgroundColor: colors.secondary,
         bottom: 20,
-        right: 10,
-        padding: 15,
-        borderRadius: 25,
-      },
-    text:{
+        right: 20,
+        margin: 2,
+        padding: 20,
+        borderRadius: 46,
+    },
+    text: {
         textAlign: 'justify',
-        fontSize: 15
+        fontSize: 15,
     },
-    scanText:{
+    scanText: {
         fontSize: 10,
-        marginRight: 10
+        marginRight: 10,
     },
-    message:{
+    message: {
         backgroundColor: colors.white,
         padding: 35,
         margin: 20,
         alignItems: 'center',
-        borderRadius: 20
+        borderRadius: 20,
     },
-    scanMessage:{
+    scanMessage: {
         backgroundColor: colors.white,
         padding: 15,
-        alignItems: 'center',
         borderRadius: 20,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
-    scanInfo:{
-        position: 'absolute',
-        top: 20,
-        right: 80,
-    },
-    button:{
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    ImageBackground:{
+    button: {
         justifyContent: 'center',
         alignItems: 'center',
-        opacity: 0.9,
+    },
+    imageBackground: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        opacity: 1,
     },
     layout: {
         height: '100%',
@@ -69,10 +55,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     mainImage: {
-        width: 60,
-        height: 60,
-        marginBottom: 20
+        width: 120,
+        height: 120,
+        marginBottom: 20,
     },
-  });
+});
 
-export default styles
+export default styles;

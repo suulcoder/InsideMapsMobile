@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {
     View,
+    Image,
     Text,
     ScrollView,
     ActivityIndicator,
@@ -45,13 +46,12 @@ const Search = ({
         <View style={styles.container}>
             {isLocalized ? (
                 <>
-                    <View style={styles.inputContainer}>
-                        <Input
-                            placeholder="Ingresa el nombre del lugar"
-                            value={searchQuery}
-                            onChangeText={(text) => changeQueryField(text)}
-                        />
-                    </View>
+                    <Input
+                        style={styles.inputContainer}
+                        placeholder="Buscar destino..."
+                        value={searchQuery}
+                        onChangeText={(text) => changeQueryField(text)}
+                    />
                     <View>
                         {isSearching && (
                             <View style={styles.isSearchingContainer}>
@@ -59,10 +59,34 @@ const Search = ({
                             </View>
                         )}
 
+                        {!isSearching &&
+                            searchQuery.length > 0 &&
+                            dataList.length == 0 && (
+                                <View style={styles.isSearchingContainer}>
+                                    <View style={styles.image}>
+                                        <Image
+                                            source={require('../../../assets/images/no-search-results.png')}
+                                            style={styles.mainImage}
+                                        />
+                                    </View>
+                                    <Text>
+                                        No hemos encontrado un lugar con ese
+                                        nombre...
+                                    </Text>
+                                </View>
+                            )}
+
                         {!(searchQuery.length > 0) && !isSearching && (
                             <View style={styles.isSearchingContainer}>
+                                <View style={styles.image}>
+                                    <Image
+                                        source={require('../../../assets/images/path.png')}
+                                        style={styles.mainImage}
+                                    />
+                                </View>
                                 <Text>
-                                    Trata de buscar el lugar al que quieres ir...
+                                    Trata de buscar el lugar al que quieres
+                                    ir...
                                 </Text>
                             </View>
                         )}
@@ -92,8 +116,16 @@ const Search = ({
                     </View>
                 </>
             ) : (
-                <View style={styles.container}>
-                    <Text>{'Escanea tu ubicación inicial para empezar a navegar'}</Text>
+                <View style={styles.isSearchingContainer}>
+                    <View style={styles.image}>
+                        <Image
+                            source={require('../../../assets/images/no-search-results.png')}
+                            style={styles.mainImage}
+                        />
+                    </View>
+                    <Text>
+                        Escanea tu ubicación inicial para empezar a navegar...
+                    </Text>
                 </View>
             )}
         </View>

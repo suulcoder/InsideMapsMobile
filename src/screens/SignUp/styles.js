@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+    error: {
+        color: 'red',
+    },
     container: {
         paddingHorizontal: 10,
         paddingTop: 70,
@@ -27,7 +30,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     title: {
-        marginVertical: 20,
+        paddingVertical: 20,
         fontSize: 26,
         textAlign: 'center',
         fontWeight: '500',

@@ -4,8 +4,13 @@ import styles from './styles';
 
 const PlacePreview = ({item, onSelectDestination}) => {
     return (
-        <Card style={styles.card} onPress={() => onSelectDestination(item.node_id)}>
-            <Text>{item.name}</Text>
+        <Card
+            style={styles.card}
+            onPress={() => onSelectDestination(item.node_id)}>
+            <Text category="s1">{item.name}</Text>
+            <Text category="label" appearance="hint">
+                Nivel: {item.level}
+            </Text>
         </Card>
     );
 };
