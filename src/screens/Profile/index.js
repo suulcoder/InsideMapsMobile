@@ -15,6 +15,7 @@ import {
 } from '../../redux/root-reducer';
 
 import styles from './styles';
+import { navigationRef } from '../../navigation';
 
 const EditIcon = () => <FontAwesome5 name="sign-out-alt" />;
 
@@ -46,6 +47,7 @@ const ProfileSetting = ({hint, value}) => (
 );
 
 const Profile = ({
+    navigation,
     username,
     firstName,
     lastName,
@@ -91,8 +93,13 @@ const Profile = ({
             />
             <Button
                 style={styles.doneButton}
-                onPress={() => console.log('Edited')}>
+                onPress={() => navigation.push('EditProfile')}>
                 Editar
+            </Button>
+            <Button
+                style={styles.doneButton}
+                onPress={() => navigation.push('Report')}>
+                Reportar un problema
             </Button>
         </ScrollView>
     );

@@ -23,6 +23,8 @@ import Information from './src/screens/Information';
 // Redux
 import * as selectors from './src/redux/root-reducer';
 import {colors} from './configuration';
+import EditProfile from './src/screens/EditProfile';
+import Report from './src/screens/Report';
 
 const Tab = createBottomTabNavigator();
 const AuthStack = createStackNavigator();
@@ -83,6 +85,16 @@ function ProfileStackNavigator() {
                     name="Profile"
                     options={{title: 'Perfil'}}
                     component={Profile}
+                />
+                <ProfileStack.Screen
+                    name="EditProfile"
+                    options={{title: ''}}
+                    component={EditProfile}
+                />
+                <ProfileStack.Screen
+                    name="Report"
+                    options={{title: 'Reportar un problema'}}
+                    component={Report}
                 />
             </ProfileStack.Navigator>
         </>
