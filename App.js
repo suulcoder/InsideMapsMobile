@@ -49,11 +49,6 @@ function HomeStackNavigator() {
                     options={{title: 'Scan QR'}}
                     component={Scan}
                 />
-                <HomeStack.Screen
-                    name="Information"
-                    options={{title: 'Navegación'}}
-                    component={Information}
-                />
             </HomeStack.Navigator>
         </>
     );
@@ -68,6 +63,11 @@ function SeachStackNavigator() {
                     name="Search"
                     options={{title: 'Búsqueda'}}
                     component={Search}
+                />
+                <HomeStack.Screen
+                    name="Information"
+                    options={{title: 'Navegación'}}
+                    component={Information}
                 />
             </SeachStack.Navigator>
         </>
