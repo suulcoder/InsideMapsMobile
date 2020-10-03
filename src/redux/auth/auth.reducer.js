@@ -42,6 +42,9 @@ const decoded = (state = null, action) => {
         case types.AUTHENTICATION_IDENTITY_CLEARED: {
             return null;
         }
+        case types.UPDATE_STARTED: {
+            return {...state, ...action.payload}
+        }
     }
 
     return state;

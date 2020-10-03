@@ -15,6 +15,20 @@ export const failLogin = (error) => ({
     payload: {error},
 });
 
+export const startUserUpdate = (payload) => ({
+    type: types.UPDATE_STARTED,
+    payload,
+});
+
+export const completeUserUpdate = () => ({
+    type: types.UPDATE_COMPLETED
+});
+
+export const failUserUpdate = (error) => ({
+    type: types.UPDATE_FAILED,
+    payload: {error},
+});
+
 export const startRegistration = (
     name,
     lastname,
