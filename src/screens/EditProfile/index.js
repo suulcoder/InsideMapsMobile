@@ -1,10 +1,10 @@
-import React from 'react';
-import {View, ScrollView} from 'react-native';
-import {Avatar, Button, Layout, Text, Divider} from '@ui-kitten/components';
+import React, {useState} from 'react';
+import {View, ScrollView,  Switch} from 'react-native';
+import {Avatar, Button, Layout, Text, Divider, Input} from '@ui-kitten/components';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {connect} from 'react-redux';
-import {logout} from '../../redux/auth/auth.actions';
+import {logout, startUserUpdate} from '../../redux/auth/auth.actions';
 import {
     getAuthUserGender,
     getAuthUserFirstName,
@@ -15,38 +15,39 @@ import {
 } from '../../redux/root-reducer';
 
 import styles from './styles';
-import { navigationRef } from '../../navigation';
 
-const EditIcon = () => <FontAwesome5 name="sign-out-alt" />;
-
-const ProfileAvatar = ({onSignOut}) => (
+const ProfileAvatar = () => (
     <View style={styles.avatarContainer}>
         <Avatar
             source={require('../../../assets/images/user-circle.png')}
             style={styles.avatar}
         />
-        <Button
-            style={styles.editButton}
-            appearance="ghost"
-            icon={EditIcon}
-            onPress={() => onSignOut()}
-        />
     </View>
 );
 
-const ProfileSetting = ({hint, value}) => (
+const ProfileSetting = ({hint, value, changeValue}) => (
     <>
+    {console.log(hint)}
         <Layout level="1" style={styles.settingsContainer}>
             <Text appearance="hint" category="s1">
                 {hint}
             </Text>
-            <Text category="s1">{value}</Text>
+            {
+                (hint!=='ID'?
+                    <Input category="s1"
+                        onChangeText={text => changeValue(text)}
+                    >{value}</Input>
+                    :
+                    <Text category="s1">{value}</Text>
+                )
+            }
+            
         </Layout>
         <Divider />
     </>
 );
 
-const Profile = ({
+const EditProfile = ({
     navigation,
     username,
     firstName,
@@ -54,52 +55,71 @@ const Profile = ({
     gender,
     age,
     userId,
-    signOut,
+    update,
 }) => {
+
+    const [g, changeG] = useState(gender===0)
+    const [user, changeUsername] = useState(username)
+    const [firstname, changeFirstName] = useState(firstName)
+    const [lastname, changeLastName] = useState(lastName)
+    const [age_, changeAge] = useState(age)
+
     return (
         <ScrollView
             style={styles.container}
             contentContainerStyle={styles.contentContainer}>
-            <ProfileAvatar onSignOut={signOut} />
+            <ProfileAvatar/>
             <ProfileSetting
                 style={[styles.profileSetting, styles.section]}
                 hint="ID"
                 value={userId}
             />
             <ProfileSetting
+                changeValue={changeUsername}
                 style={[styles.profileSetting, styles.section]}
                 hint="Usuario"
                 value={username}
             />
             <ProfileSetting
+                changeValue={changeFirstName}
                 style={[styles.profileSetting, styles.section]}
                 hint="Nombre"
                 value={firstName}
             />
             <ProfileSetting
+                changeValue={changeLastName}
                 style={styles.profileSetting}
                 hint="Apellido"
                 value={lastName}
             />
+            <Layout level="1" style={styles.settingsContainer}>
+                <Text appearance="hint" category="s1">
+                    {"Género"}
+                </Text>
+                <Layout style={styles.row}>
+                    <Text>{'F'}</Text><Switch onValueChange={(value) => changeG(value)} value={g}/><Text>{'M'}</Text>
+                </Layout>
+            </Layout>
+            <Divider />
             <ProfileSetting
-                style={styles.profileSetting}
-                hint="Género"
-                value={gender == 0 ? 'M' : 'F'}
-            />
-            <ProfileSetting
+                changeValue={changeAge}
                 style={styles.profileSetting}
                 hint="Edad"
                 value={age}
             />
             <Button
                 style={styles.doneButton}
-                onPress={() => navigation.push('EditProfile')}>
-                Editar
-            </Button>
-            <Button
-                style={styles.doneButton}
-                onPress={() => navigation.push('Report')}>
-                Reportar un problema
+                onPress={() => {update(
+                    userId, 
+                    user, 
+                    firstname, 
+                    lastname,
+                    g,
+                    age_,
+                    )
+                    navigation.push('Profile')
+                    }}>
+                Guardar
             </Button>
         </ScrollView>
     );
@@ -115,7 +135,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    signOut: () => dispatch(logout()),
+    update(userId, username, firstname, lastname, g, age){
+        dispatch(startUserUpdate({userId, username, firstname, lastname, gender:g?0:1, age}))
+    }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
