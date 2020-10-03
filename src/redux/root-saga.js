@@ -4,6 +4,7 @@ import {
     watchLoginStarted,
     watchRefreshTokenStarted,
     watchSignUpStarted,
+    watchUserUpdate,
 } from './auth/auth.sagas';
 
 import {watchFilteredPlaces} from './search/search.sagas';
@@ -17,6 +18,7 @@ function* rootSaga() {
         fork(watchSignUpStarted),
         fork(watchFilteredPlaces),
         fork(watchFetchDestinationPath),
+        fork(watchUserUpdate),
     ]);
 }
 
