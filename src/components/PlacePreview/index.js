@@ -6,7 +6,7 @@ const PlacePreview = ({item, onSelectDestination}) => {
     return (
         <Card
             style={styles.card}
-            onPress={() => onSelectDestination(item.node_id)}>
+            onPress={() => onSelectDestination(item.node_id, item.name)}>
             <Text category="s1">{item.name}</Text>
             <Text category="label" appearance="hint">
                 Nivel: {item.level}

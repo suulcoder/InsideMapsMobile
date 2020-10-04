@@ -36,9 +36,9 @@ const Search = ({
         searchPlace(query);
     };
 
-    const navigateToNavInformation = (id) => {
-        console.log('Going to Nav to End Node>', id);
-        setDestination(id);
+    const navigateToNavInformation = (id, name) => {
+        console.log('Going to Nav to End Node>', id, name);
+        setDestination(id, name);
         navigation.push('Information');
     };
 
@@ -102,9 +102,9 @@ const Search = ({
                                                 style={styles.item}>
                                                 <PlacePreview
                                                     item={item}
-                                                    onSelectDestination={(id) =>
+                                                    onSelectDestination={(id, name) =>
                                                         navigateToNavInformation(
-                                                            id,
+                                                            id, name
                                                         )
                                                     }
                                                 />
@@ -142,8 +142,8 @@ export default connect(
         searchPlace(query) {
             dispatch(startSearchingPlaces(query));
         },
-        setDestination(id) {
-            dispatch(startSettingDestinationPath(id));
+        setDestination(id, name) {
+            dispatch(startSettingDestinationPath(id, name));
         },
     }),
 )(Search);
