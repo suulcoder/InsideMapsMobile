@@ -1,117 +1,109 @@
-import React, {Component} from 'react';
-// import {View, Text} from 'react-native';
+import React from 'react';
+import * as Navigation from '../../navigation';
 
 import {connect} from 'react-redux';
-import {getDestinationPath} from '../../redux/root-reducer';
+import {getDestinationPath, getLocation} from '../../redux/root-reducer';
 
 import {
     ViroARScene,
     ViroPolyline,
-    ViroText,
     ViroARSceneNavigator,
     ViroAmbientLight,
-    ViroButton,
 } from 'react-viro';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {
-    View,
-    Text,
-    TouchableOpacity,
-    ImageBackground,
-    SafeAreaView,
-} from 'react-native';
+import {View, Text, StatusBar, TouchableOpacity} from 'react-native';
+import {Button, Card, Icon} from '@ui-kitten/components';
+
 import styles from './styles';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {deleteCurrentNode} from '../../redux/location/location.actions';
-import {isNavigationDone} from '../../redux/location/location.reducer';
+
+const NavigationIcon = (props) => (
+    <Icon {...props} name="navigation-2-outline" />
+);
 
 class Information extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            path: [],
-        };
-    }
-
-    componentDidMount() {
-        console.log(this.props.path);
-        this.setState({path: this.props.path});
     }
 
     render() {
-        if (this.props.path !== null) {
-            // console.log(this.props.path.path)
-            const {path} = this.props.path;
-            console.log(path);
+        if (this.props.destinationPath !== null) {
+            const {path, distance, destination} = this.props.destinationPath;
+            const {originName} = this.props.location;
+
             const arrayOfCoordinates = path.map((item) => [
                 item.node['coordinates'][1],
                 item.node['coordinates'][2],
                 item.node['coordinates'][0],
             ]);
-            console.log(arrayOfCoordinates);
+            //console.log(arrayOfCoordinates);
             const InfoAr = () => {
                 return (
                     <ViroARScene>
                         <ViroAmbientLight color="#FFFFFF" intensity={20} />
-                        <ViroText
-                            text="Sigue la línea!"
-                            width={2}
-                            height={2}
-                            position={[0, 0, -3]}
-                        />
-                        <ViroButton
-                            source={require('../../res/delete.png')}
-                            position={[1, 3, -5]}
-                            height={2}
-                            width={3}
-                            onTap={this.props.del}
-                        />
-                        {/* Render lines here */}
                         <ViroPolyline
-                            position={[0, 0, -2]}
+                            position={[0, 0, 0]}
                             points={arrayOfCoordinates}
-                            thickness={0.2}
+                            thickness={0.15}
                         />
                     </ViroARScene>
                 );
             };
-            return <ViroARSceneNavigator initialScene={{scene: InfoAr}} />;
+
+            const NavigationCardFooter = () => (
+                <View styles={styles.footerContainer}>
+                    <Button
+                        style={styles.footerControl}
+                        status="primary"
+                        accessoryRight={NavigationIcon}
+                        onPress={() => Navigation.navigate('Search')}>
+                        Cambiar destino
+                    </Button>
+                </View>
+            );
+
+            return (
+                <View style={styles.flex}>
+                    <StatusBar hidden={true} />
+                    <ViroARSceneNavigator initialScene={{scene: InfoAr}} />
+
+                    <TouchableOpacity
+                        style={styles.alertButton}
+                        onPress={() => Navigation.navigate('Report')}>
+                        <MaterialCommunityIcons
+                            name={'alert'}
+                            size={32}
+                            color={'white'}
+                        />
+                    </TouchableOpacity>
+                    <View style={styles.topMenu}>
+                        <Card style={styles.card} footer={NavigationCardFooter}>
+                            <Text>Te encuentras en: {originName}</Text>
+                            <Text>Destino: {destination}</Text>
+                            <Text>Distancia de {distance.toFixed(2)} m.</Text>
+                        </Card>
+                    </View>
+                </View>
+            );
         } else {
             return (
                 <>
-                    <Text>Loading route</Text>
+                    <Text>Cargando ruta...</Text>
                 </>
             );
         }
     }
 }
 
-const image = {uri: 'https://miro.medium.com/max/2400/0*VUGGU1mPbQG2QrFe.png'};
-
-const deleteButton = ({del, path}) => {
-    console.log(path);
-    return (
-        <SafeAreaView style={styles.layout}>
-            <ImageBackground source={image} style={styles.ImageBackground}>
-                <View style={styles.layout}>
-                    <Text style={styles.message}>
-                        {path ? 'CLICK TO POP NEXT NODE' : 'NO HAY MÁS NODOS'}
-                    </Text>
-                </View>
-                <TouchableOpacity style={styles.button} onPress={() => del()}>
-                    <FontAwesome5 name={'trash'} size={35} color={'white'} />
-                </TouchableOpacity>
-            </ImageBackground>
-        </SafeAreaView>
-    );
-};
-
 export default connect(
     (state) => ({
-        path: getDestinationPath(state),
+        destinationPath: getDestinationPath(state),
+        location: getLocation(state),
     }),
+    // TODO: is it necessary for the user to remove nodes? I dont think so...
     (dispatch) => ({
-        del() {
+        popNearestNode() {
             dispatch(deleteCurrentNode());
         },
     }),

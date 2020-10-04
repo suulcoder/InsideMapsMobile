@@ -71,6 +71,11 @@ function SeachStackNavigator() {
                     options={{title: 'Navegación'}}
                     component={Information}
                 />
+                <HomeStack.Screen
+                    name="Report"
+                    options={{title: 'Reportar problema'}}
+                    component={Report}
+                />
             </SeachStack.Navigator>
         </>
     );
@@ -93,7 +98,7 @@ function ProfileStackNavigator() {
                 />
                 <ProfileStack.Screen
                     name="Report"
-                    options={{title: 'Reportar un problema'}}
+                    options={{title: 'Reportar problema'}}
                     component={Report}
                 />
             </ProfileStack.Navigator>
