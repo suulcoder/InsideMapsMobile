@@ -15,15 +15,16 @@ const Scan = ({navigation, setData}) => {
         try {
             console.log(e.data);
             const qrLocation = JSON.parse(e.data);
-            const {map_id, node_id, coordinates} = qrLocation;
+            const {map_id, node_id, coordinates, name} = qrLocation;
             if (
-                (map_id && node_id && coordinates !== null) ||
+                (map_id && node_id && coordinates !== null && name) ||
                 coordinates.length === 3
             ) {
                 const location = {
                     startNode: node_id,
                     mapId: map_id,
                     coordinates,
+                    originName: name,
                 };
                 setData(location);
                 navigation.push('Home');

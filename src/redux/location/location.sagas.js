@@ -14,7 +14,7 @@ function* fetchDestinationPath(action) {
 
         const location = yield select(selectors.getLocation);
         const {mapId, startNode} = location;
-        const {endNode} = action.payload;
+        const {endNode, name} = action.payload;
 
         console.log(endNode, mapId, startNode);
 
@@ -39,7 +39,9 @@ function* fetchDestinationPath(action) {
 
             if (response.status === 200) {
                 const result = yield response.json();
-                yield put(actions.completeSettingDestinationPath(result.result.path));
+                yield put(
+                    actions.completeSettingDestinationPath({...result.result, destination: name }),
+                );
             } else {
                 console.log('Result error code:', response.status);
 

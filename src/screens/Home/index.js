@@ -12,7 +12,6 @@ import {connect} from 'react-redux';
 
 import styles from './styles';
 import * as selectors from '../../redux/root-reducer';
-import { deleteCurrentNode } from '../../redux/location/location.actions';
 
 const image = {
     uri:
@@ -71,10 +70,5 @@ const Home = ({navigation, reset, isLocalized, del}) => {
 export default connect(
     (state) => ({
         isLocalized: selectors.getLocation(state) !== null,
-    }),
-    (dispatch) => ({
-        del(){
-            dispatch(deleteCurrentNode())
-        }
     }),
 )(Home);

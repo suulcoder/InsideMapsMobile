@@ -16,21 +16,21 @@ const location = (state = null, action) => {
 const destinationPath = (state = null, action) => {
     switch (action.type) {
         case types.SET_DESTINATION_PATH_COMPLETED: {
-            const path = action.payload;
-            return path;
+            const {path, distance, destination} = action.payload.path;
+            return {path, distance, destination};
         }
         case types.SET_DESTINATION_PATH_STARTED:
         case types.SET_DESTINATION_PATH_FAILED: {
             return null;
         }
         case types.CURRENT_NODE_DELETED: {
-            if(state && state.path){
-                if(state.path.length===1){
-                    return null
+            if (state && state.path) {
+                if (state.path.length === 1) {
+                    return null;
                 }
-                return {...state, path:state.path.slice(1)}
+                return {...state, path: state.path.slice(1)};
             }
-            return state;              
+            return state;
         }
         default: {
             return state;

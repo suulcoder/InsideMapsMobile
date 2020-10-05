@@ -15,6 +15,8 @@ import {watchFilteredPlaces} from './search/search.sagas';
 
 import {watchFetchDestinationPath} from './location/location.sagas';
 
+import {watchLogbookFetch} from './logbook/logbook.sagas';
+
 function* rootSaga() {
     yield all([
         fork(watchLoginStarted),
@@ -23,7 +25,8 @@ function* rootSaga() {
         fork(watchFilteredPlaces),
         fork(watchFetchDestinationPath),
         fork(watchUserUpdate),
-        fork(watchReport)
+        fork(watchReport),
+        fork(watchLogbookFetch),
     ]);
 }
 
