@@ -7,6 +7,10 @@ import {
     watchUserUpdate,
 } from './auth/auth.sagas';
 
+import {
+    watchReport
+} from './report/report.sagas'
+
 import {watchFilteredPlaces} from './search/search.sagas';
 
 import {watchFetchDestinationPath} from './location/location.sagas';
@@ -19,6 +23,7 @@ function* rootSaga() {
         fork(watchFilteredPlaces),
         fork(watchFetchDestinationPath),
         fork(watchUserUpdate),
+        fork(watchReport)
     ]);
 }
 
