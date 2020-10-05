@@ -101,6 +101,11 @@ const Profile = ({
                 onPress={() => navigation.push('Report')}>
                 Reportar un problema
             </Button>
+            <Button
+                style={styles.doneButton}
+                onPress={() => navigation.push('Logbook')}>
+                Mis viajes anteriores
+            </Button>
         </ScrollView>
     );
 };

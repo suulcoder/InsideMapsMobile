@@ -36,7 +36,7 @@ const middlewares = [sagaMiddleware];
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: [],
+    whitelist: ['auth'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

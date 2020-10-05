@@ -19,6 +19,7 @@ import Search from './src/screens/Search';
 import Profile from './src/screens/Profile';
 import Scan from './src/screens/Scan';
 import Information from './src/screens/Information';
+import Logbook from './src/screens/Logbook';
 
 // Redux
 import * as selectors from './src/redux/root-reducer';
@@ -100,6 +101,11 @@ function ProfileStackNavigator() {
                     name="Report"
                     options={{title: 'Reportar problema'}}
                     component={Report}
+                />
+                <ProfileStack.Screen
+                    name="Logbook"
+                    options={{title:'Mis viajes'}}
+                    component={Logbook}
                 />
             </ProfileStack.Navigator>
         </>
