@@ -1,38 +1,37 @@
-env:
-  global:
-  - NODE_VERSION=stable
-
-- stage: Test and lint ✅
-  language: node_js
-  node_js: 8.5.0
-  install: yarn
-  script: npm run test:lint && npm run test:unit
-
-install:
-- curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-- export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-- nvm install $NODE_VERSION
-- nvm use $NODE_VERSION
-- nvm alias default $NODE_VERSION
-
-- npm install -g react-native-cli
-- npm install -g detox-cli
-- npm install -g yarn
-
 matrix:
   include:
-   - os: linux
-  language: android
-  jdk: oraclejdk8
-  sudo: required
-  android:
-    components:
-      - platform-tools
-      - tools
-      - build-tools-26.0.3
-      - android-21
-      - android-26
-      - sys-img-armeabi-v7a-android-21
-      - extra-android-m2repository
-      - extra-google-m2repository
-      - extra-google-google_play_services
+    - language: node_js
+      node_js:
+        - "9"
+      script: .travis/ci_node.sh
+
+    - language: node_js
+      node_js:
+        - "8"
+      script: .travis/ci_node.sh
+
+    - os: osx
+      language: objective-c
+      osx_image: xcode9.4
+      env:
+        - JOB_NAME=IOS
+      script: .travis/ci.sh
+
+    - os: linux
+      language: android
+      jdk: oraclejdk8
+      sudo: required
+      android:
+        components:
+          - platform-tools
+          - tools
+          - build-tools-26.0.3
+          - android-21
+          - android-26
+          - sys-img-armeabi-v7a-android-21
+          - extra-android-m2repository
+          - extra-google-m2repository
+          - extra-google-google_play_services
+      env:
+        - JOB_NAME=ANDROID
+      script: .travis/ci.sh
