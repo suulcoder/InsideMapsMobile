@@ -15,17 +15,18 @@ install:
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode11.3
-      language: objective-c
-      before_install:
-        - brew tap wix/brew
-        - brew install applesimutils
-      script:
-        - yarn install
-        - yarn test
-        - cd ios
-        - pod install
-        - cd ..
-        - detox build --configuration ios.sim.release
-        - detox test --configuration ios.sim.release --cleanup
+   - os: linux
+  language: android
+  jdk: oraclejdk8
+  sudo: required
+  android:
+    components:
+      - platform-tools
+      - tools
+      - build-tools-26.0.3
+      - android-21
+      - android-26
+      - sys-img-armeabi-v7a-android-21
+      - extra-android-m2repository
+      - extra-google-m2repository
+      - extra-google-google_play_services
