@@ -27,7 +27,6 @@ const ProfileAvatar = () => (
 
 const ProfileSetting = ({hint, value, changeValue}) => (
     <>
-    {console.log(hint)}
         <Layout level="1" style={styles.settingsContainer}>
             <Text appearance="hint" category="s1">
                 {hint}

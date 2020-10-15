@@ -20,9 +20,9 @@ const token = (state = null, action) => {
         case types.AUTHENTICATION_IDENTITY_CLEARED: {
             return null;
         }
+        default:
+            return state;
     }
-
-    return state;
 };
 
 const decoded = (state = null, action) => {

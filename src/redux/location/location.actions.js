@@ -5,9 +5,9 @@ export const setInitialLocation = (initLocation) => ({
     payload: {initLocation},
 });
 
-export const startSettingDestinationPath = (endNode) => ({
+export const startSettingDestinationPath = (endNode, name) => ({
     type: types.SET_DESTINATION_PATH_STARTED,
-    payload: {endNode},
+    payload: {endNode, name},
 });
 
 export const completeSettingDestinationPath = (path) => ({
@@ -21,5 +21,5 @@ export const failSettingDestinationPath = (error) => ({
 });
 
 export const deleteCurrentNode = () => ({
-   type: types.CURRENT_NODE_DELETED, 
+    type: types.CURRENT_NODE_DELETED,
 });

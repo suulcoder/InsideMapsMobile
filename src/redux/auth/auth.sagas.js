@@ -11,10 +11,11 @@ import {API_URL} from '../../../configuration';
 import {bodyParser} from '../../utils/parser';
 
 import * as actions from './auth.actions';
-import * as selectors from './auth.reducer';
+import * as selectors from '../root-reducer';
 import * as types from './auth.types';
 
 const API_BASE_URL = API_URL + 'api/v1/auth';
+const API_BASE_URL_USER = API_URL + 'api/v1/user';
 
 function* login(action) {
     try {
@@ -107,4 +108,39 @@ function* signup(action) {
 
 export function* watchSignUpStarted() {
     yield takeEvery(types.REGISTRATION_STARTED, signup);
+}
+
+function* updateUser(action) {
+    try {
+        const token = yield select(selectors.getAuthToken);
+        console.log(token)
+        const response = yield call(fetch, `${API_BASE_URL_USER}/${action.payload.userId}`, {
+            method: 'PUT',
+                body: JSON.stringify(action.payload),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `JWT ${token}`,
+                },
+            },
+        );
+
+        if (response.status === 200) {
+            const result = yield response.json();
+            yield put(actions.completeUserUpdate(result.result.path));
+        } else {
+            console.log(response)
+            yield put(
+                actions.failUserUpdate(
+                    'Fail User Update',
+                ),
+            );
+        }
+    } catch (error) {
+        console.log(error)
+        yield put(actions.failUserUpdate(error));
+    }
+}
+
+export function* watchUserUpdate() {
+    yield takeEvery(types.UPDATE_STARTED, updateUser);
 }

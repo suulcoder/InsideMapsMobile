@@ -2,11 +2,15 @@ import {combineReducers} from 'redux';
 import auth, * as authSelectors from './auth/auth.reducer';
 import search, * as searchSelectors from './search/search.reducer';
 import location, * as locationSelectors from './location/location.reducer';
+import report, * as reportSelectors from './report/report.reducer';
+import logbook, * as logbookSelectors from './logbook/logbook.reducer';
 
 const rootReducer = combineReducers({
     auth,
     search,
     location,
+    report,
+    logbook
 });
 
 export default rootReducer;
@@ -52,3 +56,17 @@ export const getLocation = (state) =>
     locationSelectors.getLocation(state.location);
 export const getDestinationPath = (state) =>
     locationSelectors.getDestinationPath(state.location);
+
+export const getIsReporting = (state) => 
+    reportSelectors.getIsReporting(state.report);
+export const getErrorOnReport = state =>
+    reportSelectors.getErrorOnReport(state.report);
+
+export const getLogbookItem = (state, id) =>
+    logbookSelectors.getLogbookItem(state.logbook, id);
+export const getLogbookItems = (state) =>
+    logbookSelectors.getLogbookItems(state.logbook);
+export const getIsFetchingLogbook = (state) =>
+    logbookSelectors.getIsFetching(state.logbook);
+export const getFetchingLogbookError = (state) =>
+    logbookSelectors.getLogbookError(state.logbook);
