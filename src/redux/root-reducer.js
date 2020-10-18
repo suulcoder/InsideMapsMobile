@@ -31,6 +31,8 @@ export const getAuthUserAge = (state) =>
     authSelectors.getAuthUserAge(state.auth);
 export const getAuthUserGender = (state) =>
     authSelectors.getAuthUserGender(state.auth);
+export const getIsAuthUserGuest = (state) =>
+    authSelectors.getIsAuthUserGuest(state.auth);
 
 export const getIsAuthenticating = (state) =>
     authSelectors.getIsAuthenticating(state.auth);

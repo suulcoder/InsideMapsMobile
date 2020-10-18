@@ -12,10 +12,10 @@ import {
     getAuthUserLastName,
     getAuthUserAge,
     getAuthUserID,
+    getIsAuthUserGuest,
 } from '../../redux/root-reducer';
 
 import styles from './styles';
-import { navigationRef } from '../../navigation';
 
 const EditIcon = () => <FontAwesome5 name="sign-out-alt" />;
 
@@ -54,6 +54,7 @@ const Profile = ({
     gender,
     age,
     userId,
+    isGuest,
     signOut,
 }) => {
     return (
@@ -61,41 +62,56 @@ const Profile = ({
             style={styles.container}
             contentContainerStyle={styles.contentContainer}>
             <ProfileAvatar onSignOut={signOut} />
-            <ProfileSetting
-                style={[styles.profileSetting, styles.section]}
-                hint="ID"
-                value={userId}
-            />
-            <ProfileSetting
-                style={[styles.profileSetting, styles.section]}
-                hint="Usuario"
-                value={username}
-            />
-            <ProfileSetting
-                style={[styles.profileSetting, styles.section]}
-                hint="Nombre"
-                value={firstName}
-            />
-            <ProfileSetting
-                style={styles.profileSetting}
-                hint="Apellido"
-                value={lastName}
-            />
-            <ProfileSetting
-                style={styles.profileSetting}
-                hint="Género"
-                value={gender == 0 ? 'M' : 'F'}
-            />
-            <ProfileSetting
-                style={styles.profileSetting}
-                hint="Edad"
-                value={age}
-            />
-            <Button
-                style={styles.doneButton}
-                onPress={() => navigation.push('EditProfile')}>
-                Editar
-            </Button>
+            {!isGuest ? (
+                <>
+                    <ProfileSetting
+                        style={[styles.profileSetting, styles.section]}
+                        hint="ID"
+                        value={userId}
+                    />
+                    <ProfileSetting
+                        style={[styles.profileSetting, styles.section]}
+                        hint="Usuario"
+                        value={username}
+                    />
+                    <ProfileSetting
+                        style={[styles.profileSetting, styles.section]}
+                        hint="Nombre"
+                        value={firstName}
+                    />
+                    <ProfileSetting
+                        style={styles.profileSetting}
+                        hint="Apellido"
+                        value={lastName}
+                    />
+                    <ProfileSetting
+                        style={styles.profileSetting}
+                        hint="Género"
+                        value={gender == 0 ? 'M' : 'F'}
+                    />
+                    <ProfileSetting
+                        style={styles.profileSetting}
+                        hint="Edad"
+                        value={age}
+                    />
+                    <Button
+                        style={styles.doneButton}
+                        onPress={() => navigation.push('EditProfile')}>
+                        Editar
+                    </Button>
+                </>
+            ) : (
+                <>
+                    <Text
+                        appearance="hint"
+                        style={styles.settingsContainer}
+                        category="s1">
+                        {
+                            'Actualmente estás logueado como Invitado, cierra sesión para poder crear una cuenta'
+                        }
+                    </Text>
+                </>
+            )}
             <Button
                 style={styles.doneButton}
                 onPress={() => navigation.push('Report')}>
@@ -117,6 +133,7 @@ const mapStateToProps = (state) => ({
     age: getAuthUserAge(state),
     gender: getAuthUserGender(state),
     userId: getAuthUserID(state),
+    isGuest: getIsAuthUserGuest(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

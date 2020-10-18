@@ -3,9 +3,14 @@ import {combineReducers} from 'redux';
 
 import * as types from './auth.types';
 
+const GUEST_ROLE = 3;
+
 const token = (state = null, action) => {
     switch (action.type) {
         case types.AUTHENTICATION_STARTED: {
+            return null;
+        }
+        case types.GUEST_AUTHENTICATION_STARTED: {
             return null;
         }
         case types.AUTHENTICATION_COMPLETED: {
@@ -30,6 +35,9 @@ const decoded = (state = null, action) => {
         case types.AUTHENTICATION_STARTED: {
             return null;
         }
+        case types.GUEST_AUTHENTICATION_STARTED: {
+            return null;
+        }
         case types.AUTHENTICATION_COMPLETED: {
             return jwtDecode(action.payload.token);
         }
@@ -43,7 +51,7 @@ const decoded = (state = null, action) => {
             return null;
         }
         case types.UPDATE_STARTED: {
-            return {...state, ...action.payload}
+            return {...state, ...action.payload};
         }
     }
 
@@ -53,6 +61,9 @@ const decoded = (state = null, action) => {
 const isAuthenticating = (state = false, action) => {
     switch (action.type) {
         case types.AUTHENTICATION_STARTED: {
+            return true;
+        }
+        case types.GUEST_AUTHENTICATION_STARTED: {
             return true;
         }
         case types.AUTHENTICATION_COMPLETED: {
@@ -87,6 +98,9 @@ const error = (state = null, action) => {
         case types.AUTHENTICATION_STARTED: {
             return null;
         }
+        case types.GUEST_AUTHENTICATION_STARTED: {
+            return null;
+        }
         case types.AUTHENTICATION_COMPLETED: {
             return null;
         }
@@ -98,7 +112,7 @@ const error = (state = null, action) => {
     return state;
 };
 
-const error_signup = (state = null, action) => {
+const errorSignup = (state = null, action) => {
     switch (action.type) {
         case types.REGISTRATION_STARTED: {
             return null;
@@ -152,7 +166,7 @@ const auth = combineReducers({
     isAuthenticating,
     isRefreshing,
     isRegistrating,
-    error_signup,
+    errorSignup,
     error,
     refreshingError,
 });
@@ -178,8 +192,9 @@ export const getAuthUserGender = (state) =>
 export const getAuthUserAge = (state) =>
     state.decoded ? state.decoded.age : null;
 
-
+export const getIsAuthUserGuest = (state) =>
+    state.decoded ? state.decoded.role === GUEST_ROLE : null;
 
 export const getIsRefreshingToken = (state) => state.isRefreshing;
 export const getRefreshingError = (state) => state.refreshingError;
-export const getSignUpError = (state) => state.error_signup;
+export const getSignUpError = (state) => state.errorSignup;

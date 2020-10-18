@@ -5,6 +5,7 @@ import {
     watchRefreshTokenStarted,
     watchSignUpStarted,
     watchUserUpdate,
+    watchGuestLoginStarted,
 } from './auth/auth.sagas';
 
 import {
@@ -20,6 +21,7 @@ import {watchLogbookFetch} from './logbook/logbook.sagas';
 function* rootSaga() {
     yield all([
         fork(watchLoginStarted),
+        fork(watchGuestLoginStarted),
         fork(watchRefreshTokenStarted),
         fork(watchSignUpStarted),
         fork(watchFilteredPlaces),
