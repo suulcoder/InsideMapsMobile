@@ -6,7 +6,7 @@ export const startReport = (message) => ({
 });
 
 export const completeReport = () => ({
-    type: types.REPORT_COMPLETED
+    type: types.REPORT_COMPLETED,
 });
 
 export const failReport = (error) => ({
