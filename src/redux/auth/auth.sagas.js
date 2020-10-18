@@ -43,6 +43,32 @@ export function* watchLoginStarted() {
     yield takeEvery(types.AUTHENTICATION_STARTED, login);
 }
 
+// Guest Sign In
+function* loginAsGuest(action) {
+    try {
+        const response = yield call(fetch, `${API_BASE_URL}/signin-as-guest/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        });
+        if (response.status === 200) {
+            const {token} = yield response.json();
+            yield put(actions.completeLogin(token));
+        } else {
+            const {message} = yield response.json();
+            yield put(actions.failLogin(message));
+        }
+    } catch (error) {
+        //yield console.log(message);
+        yield put(actions.failLogin('CONNECTION FAILED'));
+    }
+}
+
+export function* watchGuestLoginStarted() {
+    yield takeEvery(types.GUEST_AUTHENTICATION_STARTED, loginAsGuest);
+}
+
 function* refreshToken(action) {
     const expiration = yield select(selectors.getAuthExpiration);
     // eslint-disable-next-line radix
@@ -113,9 +139,12 @@ export function* watchSignUpStarted() {
 function* updateUser(action) {
     try {
         const token = yield select(selectors.getAuthToken);
-        console.log(token)
-        const response = yield call(fetch, `${API_BASE_URL_USER}/${action.payload.userId}`, {
-            method: 'PUT',
+        console.log(token);
+        const response = yield call(
+            fetch,
+            `${API_BASE_URL_USER}/${action.payload.userId}`,
+            {
+                method: 'PUT',
                 body: JSON.stringify(action.payload),
                 headers: {
                     'Content-Type': 'application/json',
@@ -128,15 +157,11 @@ function* updateUser(action) {
             const result = yield response.json();
             yield put(actions.completeUserUpdate(result.result.path));
         } else {
-            console.log(response)
-            yield put(
-                actions.failUserUpdate(
-                    'Fail User Update',
-                ),
-            );
+            console.log(response);
+            yield put(actions.failUserUpdate('Fail User Update'));
         }
     } catch (error) {
-        console.log(error)
+        console.log(error);
         yield put(actions.failUserUpdate(error));
     }
 }
