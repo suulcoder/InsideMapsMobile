@@ -19,7 +19,7 @@ function* fetchDestinationPath(action) {
         console.log(endNode, mapId, startNode);
 
         if (isAuth) {
-            //const token = yield select(selectors.getAuthToken);
+            const token = yield select(selectors.getAuthToken);
             const response = yield call(
                 fetch,
                 `${API_BASE_URL}/navigation/find-shortest-path/${mapId}`,
@@ -32,7 +32,7 @@ function* fetchDestinationPath(action) {
                     }), */
                     headers: {
                         'Content-Type': 'application/json',
-                        //Authorization: `JWT ${token}`,
+                        Authorization: `JWT ${token}`,
                     },
                 },
             );
