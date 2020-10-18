@@ -3,10 +3,11 @@ import {View, ScrollView, Switch} from 'react-native';
 import {Button, Input} from '@ui-kitten/components';
 
 import {connect} from 'react-redux';
+import {startReport} from '../../redux/report/report.actions';
 
 import styles from './styles';
 
-const Report = ({report}) => {
+const Report = ({navigation, report}) => {
     const [value, onChangeText] = useState('');
 
     return (
@@ -20,19 +21,24 @@ const Report = ({report}) => {
                 onChangeText={(text) => onChangeText(text)}
                 value={value}
             />
-            <Button style={styles.doneButton} onPress={() => report(value)}>
+            <Button
+                style={styles.doneButton}
+                onPress={() => {
+                    report(value);
+                    onChangeText('');
+                    navigation.push('Profile');
+                }}>
                 Enviar
             </Button>
         </ScrollView>
     );
 };
 
-const mapStateToProps = (state) => ({});
-
 const mapDispatchToProps = (dispatch) => ({
     report(message) {
         console.log('Report is: ', message);
+        dispatch(startReport(message));
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Report);
+export default connect(undefined, mapDispatchToProps)(Report);
