@@ -12,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import com.viromedia.bridge.ReactViroPackage;
 import com.facebook.react.shell.MainReactPackage;
+import com.wenkesj.voice.VoicePackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
