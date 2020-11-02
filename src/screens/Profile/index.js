@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, ToastAndroid} from 'react-native';
 import {Avatar, Button, Layout, Text, Divider, Icon} from '@ui-kitten/components';
 
 import {connect} from 'react-redux';
@@ -16,6 +16,11 @@ import {
 
 import styles from './styles';
 
+const showToast = (text) => {
+    ToastAndroid.show(text, ToastAndroid.SHORT);
+};
+  
+
 const LogoutIcon = (props) => (
     <Icon {...props} name='log-out-outline'/>
   );
@@ -26,7 +31,10 @@ const ProfileAvatar = ({onSignOut}) => (
             style={styles.editButton}
             appearance="ghost"
             accessoryLeft={LogoutIcon}
-            onPress={() => onSignOut()}
+            onPress={() => {
+                onSignOut()
+                showToast('You signed out')
+            }}
         >Salir</Button>
         <Avatar
             source={require('../../../assets/images/user-circle.png')}

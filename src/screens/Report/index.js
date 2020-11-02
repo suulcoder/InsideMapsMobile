@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
-import {View, ScrollView, Switch} from 'react-native';
+import {View, ScrollView, Switch, ToastAndroid} from 'react-native';
 import {Button, Input} from '@ui-kitten/components';
 
 import {connect} from 'react-redux';
 import {startReport} from '../../redux/report/report.actions';
 
 import styles from './styles';
+
+const showToast = (text) => {
+    ToastAndroid.show(text, ToastAndroid.SHORT);
+};
 
 const Report = ({navigation, report}) => {
     const [value, onChangeText] = useState('');
@@ -26,6 +30,7 @@ const Report = ({navigation, report}) => {
                 onPress={() => {
                     report(value);
                     onChangeText('');
+                    showToast('Your report was submitted successfully')
                     navigation.push('Profile');
                 }}>
                 Enviar
