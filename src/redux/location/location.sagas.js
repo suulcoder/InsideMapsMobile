@@ -11,7 +11,7 @@ const API_BASE_URL = API_URL + 'api/v1/';
 function* fetchDestinationPath(action) {
     try {
         const isAuth = yield select(selectors.isAuthenticated);
-
+        const token = yield select(selectors.getAuthToken);
         const location = yield select(selectors.getLocation);
         const {mapId, startNode} = location;
         const {endNode, name} = action.payload;
