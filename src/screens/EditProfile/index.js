@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, ScrollView,  Switch} from 'react-native';
+import {View, ScrollView,  Switch, ToastAndroid} from 'react-native';
 import {Avatar, Button, Layout, Text, Divider, Input} from '@ui-kitten/components';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -15,6 +15,10 @@ import {
 } from '../../redux/root-reducer';
 
 import styles from './styles';
+
+const showToast = (text) => {
+    ToastAndroid.show(text, ToastAndroid.SHORT);
+};
 
 const ProfileAvatar = () => (
     <View style={styles.avatarContainer}>
@@ -116,6 +120,7 @@ const EditProfile = ({
                     g,
                     age_,
                     )
+                    showToast('Profile updated succesfully')
                     navigation.push('Profile')
                     }}>
                 Guardar
