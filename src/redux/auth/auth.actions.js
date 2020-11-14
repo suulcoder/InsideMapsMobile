@@ -5,6 +5,10 @@ export const startLogin = (email, password) => ({
     payload: {email, password},
 });
 
+export const startGuestLogin = () => ({
+    type: types.GUEST_AUTHENTICATION_STARTED,
+});
+
 export const completeLogin = (token) => ({
     type: types.AUTHENTICATION_COMPLETED,
     payload: {token},

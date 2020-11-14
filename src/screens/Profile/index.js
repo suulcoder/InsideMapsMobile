@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, ScrollView} from 'react-native';
-import {Avatar, Button, Layout, Text, Divider} from '@ui-kitten/components';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {View, ScrollView, ToastAndroid} from 'react-native';
+import {Avatar, Button, Layout, Text, Divider, Icon} from '@ui-kitten/components';
 
 import {connect} from 'react-redux';
 import {logout} from '../../redux/auth/auth.actions';
@@ -12,24 +11,34 @@ import {
     getAuthUserLastName,
     getAuthUserAge,
     getAuthUserID,
+    getIsAuthUserGuest,
 } from '../../redux/root-reducer';
 
 import styles from './styles';
-import { navigationRef } from '../../navigation';
 
-const EditIcon = () => <FontAwesome5 name="sign-out-alt" />;
+const showToast = (text) => {
+    ToastAndroid.show(text, ToastAndroid.SHORT);
+};
+  
+
+const LogoutIcon = (props) => (
+    <Icon {...props} name='log-out-outline'/>
+  );
 
 const ProfileAvatar = ({onSignOut}) => (
     <View style={styles.avatarContainer}>
-        <Avatar
-            source={require('../../../assets/images/user-circle.png')}
-            style={styles.avatar}
-        />
         <Button
             style={styles.editButton}
             appearance="ghost"
-            icon={EditIcon}
-            onPress={() => onSignOut()}
+            accessoryLeft={LogoutIcon}
+            onPress={() => {
+                onSignOut()
+                showToast('You signed out')
+            }}
+        >Salir</Button>
+        <Avatar
+            source={require('../../../assets/images/user-circle.png')}
+            style={styles.avatar}
         />
     </View>
 );
@@ -54,6 +63,7 @@ const Profile = ({
     gender,
     age,
     userId,
+    isGuest,
     signOut,
 }) => {
     return (
@@ -61,50 +71,65 @@ const Profile = ({
             style={styles.container}
             contentContainerStyle={styles.contentContainer}>
             <ProfileAvatar onSignOut={signOut} />
-            <ProfileSetting
-                style={[styles.profileSetting, styles.section]}
-                hint="ID"
-                value={userId}
-            />
-            <ProfileSetting
-                style={[styles.profileSetting, styles.section]}
-                hint="Usuario"
-                value={username}
-            />
-            <ProfileSetting
-                style={[styles.profileSetting, styles.section]}
-                hint="Nombre"
-                value={firstName}
-            />
-            <ProfileSetting
-                style={styles.profileSetting}
-                hint="Apellido"
-                value={lastName}
-            />
-            <ProfileSetting
-                style={styles.profileSetting}
-                hint="Género"
-                value={gender == 0 ? 'M' : 'F'}
-            />
-            <ProfileSetting
-                style={styles.profileSetting}
-                hint="Edad"
-                value={age}
-            />
-            <Button
-                style={styles.doneButton}
-                onPress={() => navigation.push('EditProfile')}>
-                Editar
-            </Button>
+            {!isGuest ? (
+                <>
+                    <ProfileSetting
+                        style={[styles.profileSetting, styles.section]}
+                        hint="ID"
+                        value={userId}
+                    />
+                    <ProfileSetting
+                        style={[styles.profileSetting, styles.section]}
+                        hint="Usuario"
+                        value={username}
+                    />
+                    <ProfileSetting
+                        style={[styles.profileSetting, styles.section]}
+                        hint="Nombre"
+                        value={firstName}
+                    />
+                    <ProfileSetting
+                        style={styles.profileSetting}
+                        hint="Apellido"
+                        value={lastName}
+                    />
+                    <ProfileSetting
+                        style={styles.profileSetting}
+                        hint="Género"
+                        value={gender == 0 ? 'M' : 'F'}
+                    />
+                    <ProfileSetting
+                        style={styles.profileSetting}
+                        hint="Edad"
+                        value={age}
+                    />
+                    <Button
+                        style={styles.doneButton}
+                        onPress={() => navigation.push('EditProfile')}>
+                        Editar
+                    </Button>
+                    <Button
+                        style={styles.doneButton}
+                        onPress={() => navigation.push('Logbook')}>
+                        Mis viajes anteriores
+                    </Button>
+                </>
+            ) : (
+                <>
+                    <Text
+                        appearance="hint"
+                        style={styles.settingsContainer}
+                        category="s1">
+                        {
+                            'Actualmente estás logueado como Invitado, cierra sesión para poder crear una cuenta'
+                        }
+                    </Text>
+                </>
+            )}
             <Button
                 style={styles.doneButton}
                 onPress={() => navigation.push('Report')}>
                 Reportar un problema
-            </Button>
-            <Button
-                style={styles.doneButton}
-                onPress={() => navigation.push('Logbook')}>
-                Mis viajes anteriores
             </Button>
         </ScrollView>
     );
@@ -117,6 +142,7 @@ const mapStateToProps = (state) => ({
     age: getAuthUserAge(state),
     gender: getAuthUserGender(state),
     userId: getAuthUserID(state),
+    isGuest: getIsAuthUserGuest(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
         width: 210,
     },
     editButton: {
+        color: '#f44336',
         position: 'absolute',
         alignSelf: 'flex-end',
         bottom: 0,

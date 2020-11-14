@@ -14,6 +14,15 @@ const styles = StyleSheet.create({
         marginTop: 0,
         backgroundColor: colors.white,
     },
+    voiceButton: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "absolute",
+        right: 8,
+        top: 8
+    },
     isSearchingContainer: {
         alignItems: 'center',
         justifyContent: 'center',

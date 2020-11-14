@@ -1,26 +1,18 @@
 import React, {useState} from 'react';
-import {View, ScrollView,  Switch} from 'react-native';
-import {Avatar, Button, Layout, Text, Divider, Input} from '@ui-kitten/components';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {View, ScrollView, Switch, ToastAndroid} from 'react-native';
+import {Button, Input} from '@ui-kitten/components';
 
 import {connect} from 'react-redux';
-import {logout, startUserUpdate} from '../../redux/auth/auth.actions';
-import {
-    getAuthUserGender,
-    getAuthUserFirstName,
-    getAuthUserUsername,
-    getAuthUserLastName,
-    getAuthUserAge,
-    getAuthUserID,
-} from '../../redux/root-reducer';
+import {startReport} from '../../redux/report/report.actions';
 
 import styles from './styles';
 
-const Report = ({
+const showToast = (text) => {
+    ToastAndroid.show(text, ToastAndroid.SHORT);
+};
 
-}) => {
-
-    const [value, onChangeText] = useState('')
+const Report = ({navigation, report}) => {
+    const [value, onChangeText] = useState('');
 
     return (
         <ScrollView
@@ -30,27 +22,28 @@ const Report = ({
                 style={styles.report_input}
                 multiline
                 numberOfLines={4}
-                onChangeText={text => onChangeText(text)}
+                onChangeText={(text) => onChangeText(text)}
                 value={value}
-            >
-            </Input>
+            />
             <Button
                 style={styles.doneButton}
-                onPress={() => report(value)}>
+                onPress={() => {
+                    report(value);
+                    onChangeText('');
+                    showToast('Your report was submitted successfully')
+                    navigation.push('Profile');
+                }}>
                 Enviar
             </Button>
         </ScrollView>
     );
 };
 
-const mapStateToProps = (state) => ({
-
-});
-
 const mapDispatchToProps = (dispatch) => ({
-    update(message){
-        //report()
-    }
+    report(message) {
+        console.log('Report is: ', message);
+        dispatch(startReport(message));
+    },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Report);
+export default connect(undefined, mapDispatchToProps)(Report);

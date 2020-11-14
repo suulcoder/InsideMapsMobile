@@ -9,44 +9,45 @@ import {startFetchingLogbook} from '../../redux/logbook/logbook.actions';
 import {getLogbookItems} from '../../redux/root-reducer';
 
 import styles from './styles';
-import { navigationRef } from '../../navigation';
+import {navigationRef} from '../../navigation';
 
 const LogbookItem = ({value}) => {
-  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const date = new Date(value.date);
+    var options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    };
+    const date = new Date(value.year, parseInt(value.month) - 1, value.day);
+    console.log(date);
 
-  return (
-  <>
-    <Layout level="1" style={styles.settingsContainer}>
-      <Text category="s1">Fecha: {date.toLocaleDateString("en-US", options)}</Text>
-      <Text category="s1">Distancia recorrida: {value.distance_traveled}</Text>
-    </Layout>
-    <Divider />
-  </>
-  )
+    return (
+        <>
+            <Layout level="1" style={styles.settingsContainer}>
+                <Text category="s1">
+                    Fecha: {date.toLocaleDateString('es-ES', options)}
+                </Text>
+                <Text category="s1">
+                    Destino (nodo): {value.destination_id}
+                </Text>
+            </Layout>
+            <Divider />
+        </>
+    );
 };
 
-const Logbook = ({
-    navigation,
-    fetchLogbook,
-    logbookItems
-}) => {
-  useEffect(() => {
-    fetchLogbook()
-  }, []);
+const Logbook = ({navigation, fetchLogbook, logbookItems}) => {
+    useEffect(() => {
+        fetchLogbook();
+    }, []);
     return (
         <ScrollView
             style={styles.container}
             contentContainerStyle={styles.contentContainer}>
-            {logbookItems && 
-              logbookItems.map((item, i) => {
-                return (
-                <LogbookItem 
-                  key={i}
-                  value={item}
-                />);
-              })
-            }
+            {logbookItems &&
+                logbookItems.map((item, i) => {
+                    return <LogbookItem key={i} value={item} />;
+                })}
             <Button
                 style={styles.doneButton}
                 onPress={() => navigation.push('Profile')}>
@@ -57,12 +58,12 @@ const Logbook = ({
 };
 
 const mapStateToProps = (state) => ({
-    logbookItems: getLogbookItems(state)
+    logbookItems: getLogbookItems(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
     signOut: () => dispatch(logout()),
-    fetchLogbook: () => dispatch(startFetchingLogbook())
+    fetchLogbook: () => dispatch(startFetchingLogbook()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Logbook);

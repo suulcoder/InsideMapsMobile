@@ -36,7 +36,7 @@ const errorOnReport = (state = null, action) => {
 
 const report = combineReducers({
     isReporting,
-    errorOnReport
+    errorOnReport,
 });
 
 export default report;

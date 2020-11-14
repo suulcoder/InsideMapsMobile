@@ -9,6 +9,8 @@ import {
     ViroPolyline,
     ViroARSceneNavigator,
     ViroAmbientLight,
+    ViroSphere,
+    ViroMaterials
 } from 'react-viro';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -37,7 +39,7 @@ class Information extends React.Component {
                 item.node['coordinates'][2],
                 item.node['coordinates'][0],
             ]);
-            //console.log(arrayOfCoordinates);
+            console.log(arrayOfCoordinates);
             const InfoAr = () => {
                 return (
                     <ViroARScene>
@@ -46,6 +48,12 @@ class Information extends React.Component {
                             position={[0, 0, 0]}
                             points={arrayOfCoordinates}
                             thickness={0.15}
+                            materials = {"moving"}
+                        />
+                        <ViroSphere
+                            position = {arrayOfCoordinates[arrayOfCoordinates.length-1]}
+                            radius = {0.5}
+                            materials = {["grid"]}
                         />
                     </ViroARScene>
                 );
@@ -95,6 +103,15 @@ class Information extends React.Component {
         }
     }
 }
+
+ViroMaterials.createMaterials({
+    grid:{
+        diffuseTexture: require('../../../assets/images/endNode.jpg')
+    },
+    moving:{
+        diffuseTexture: require('../../../assets/images/celeste.jpg')
+    }
+})
 
 export default connect(
     (state) => ({
