@@ -26,10 +26,6 @@ function* fetchDestinationPath(action) {
                 {
                     method: 'POST',
                     body: JSON.stringify({startNode, endNode}),
-                    /* bodyParser({
-                        startNode,
-                        endNode,
-                    }), */
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `JWT ${token}`,

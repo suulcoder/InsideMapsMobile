@@ -6,7 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {connect} from 'react-redux';
 import {logout} from '../../redux/auth/auth.actions';
 import {startFetchingLogbook} from '../../redux/logbook/logbook.actions';
-import {getLogbookItems} from '../../redux/root-reducer';
+import {getLogbookItems, getIsFetchingLogbook} from '../../redux/root-reducer';
 
 import styles from './styles';
 import {navigationRef} from '../../navigation';
@@ -36,11 +36,12 @@ const LogbookItem = ({value}) => {
     );
 };
 
-const Logbook = ({navigation, fetchLogbook, logbookItems}) => {
+const Logbook = ({navigation, fetchLogbook, logbookItems, isFetchingLogbook}) => {
     useEffect(() => {
         fetchLogbook();
     }, []);
     return (
+        isFetchingLogbook ? (<Text style={styles.isFetching}>We're fetching your data...</Text>) : 
         <ScrollView
             style={styles.container}
             contentContainerStyle={styles.contentContainer}>
@@ -59,6 +60,7 @@ const Logbook = ({navigation, fetchLogbook, logbookItems}) => {
 
 const mapStateToProps = (state) => ({
     logbookItems: getLogbookItems(state),
+    isFetchingLogbook: getIsFetchingLogbook(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

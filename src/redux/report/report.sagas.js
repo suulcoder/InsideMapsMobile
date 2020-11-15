@@ -2,13 +2,10 @@ import {
     call,
     takeEvery,
     put,
-    // race,
-    // all,
     select,
 } from 'redux-saga/effects';
 
 import {API_URL} from '../../../configuration';
-import {bodyParser} from '../../utils/parser';
 
 import * as actions from './report.actions';
 import * as selectors from '../root-reducer';

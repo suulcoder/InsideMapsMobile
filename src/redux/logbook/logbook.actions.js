@@ -10,7 +10,7 @@ export const completeFetchingLogbook = (entities, order) => ({
         entities,
         order,
     },
-    });
+});
 
 export const failFetchingLogbook = error => ({
     type: types.LOGBOOK_FETCHING_FAILED,
