@@ -1,7 +1,7 @@
 import * as types from './logbook.types';
 import {combineReducers} from 'redux';
 
-const byId = (state = {}, action) => {
+export const byId = (state = {}, action) => {
     switch (action.type) {
         case types.LOGBOOK_FETCHING_COMPLETED: {
             const {entities, order} = action.payload;
@@ -20,7 +20,7 @@ const byId = (state = {}, action) => {
     }
 };
 
-const order = (state = [], action) => {
+export const order = (state = [], action) => {
     switch (action.type) {
         case types.LOGBOOK_FETCHING_COMPLETED: {
             return [...action.payload.order];
@@ -31,7 +31,7 @@ const order = (state = [], action) => {
     }
 };
 
-const IsFetching = (state = false, action) => {
+export const IsFetching = (state = false, action) => {
     switch (action.type) {
         case types.LOGBOOK_FETCHING_STARTED: {
             return true;
@@ -46,7 +46,7 @@ const IsFetching = (state = false, action) => {
     }
 };
 
-const error = (state = null, action) => {
+export const error = (state = null, action) => {
     switch (action.type) {
         case types.LOGBOOK_FETCHING_FAILED: {
             return action.payload.error;
