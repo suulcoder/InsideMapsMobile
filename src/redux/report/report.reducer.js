@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 
 import * as types from './report.types';
 
-const isReporting = (state = false, action) => {
+export const isReporting = (state = false, action) => {
     switch (action.type) {
         case types.REPORT_STARTED: {
             return true;
@@ -18,7 +18,7 @@ const isReporting = (state = false, action) => {
     return state;
 };
 
-const errorOnReport = (state = null, action) => {
+export const errorOnReport = (state = null, action) => {
     switch (action.type) {
         case types.REPORT_STARTED: {
             return null;
