@@ -5,7 +5,7 @@ import * as types from './auth.types';
 
 const GUEST_ROLE = 3;
 
-const token = (state = null, action) => {
+export const token = (state = null, action) => {
     switch (action.type) {
         case types.AUTHENTICATION_STARTED: {
             return null;
@@ -30,7 +30,7 @@ const token = (state = null, action) => {
     }
 };
 
-const decoded = (state = null, action) => {
+export const decoded = (state = null, action) => {
     switch (action.type) {
         case types.AUTHENTICATION_STARTED: {
             return null;
@@ -58,7 +58,7 @@ const decoded = (state = null, action) => {
     return state;
 };
 
-const isAuthenticating = (state = false, action) => {
+export const isAuthenticating = (state = false, action) => {
     switch (action.type) {
         case types.AUTHENTICATION_STARTED: {
             return true;
@@ -77,7 +77,7 @@ const isAuthenticating = (state = false, action) => {
     return state;
 };
 
-const isRegistrating = (state = false, action) => {
+export const isRegistrating = (state = false, action) => {
     switch (action.type) {
         case types.REGISTRATION_STARTED: {
             return true;
@@ -93,7 +93,7 @@ const isRegistrating = (state = false, action) => {
     return state;
 };
 
-const error = (state = null, action) => {
+export const error = (state = null, action) => {
     switch (action.type) {
         case types.AUTHENTICATION_STARTED: {
             return null;
@@ -112,7 +112,7 @@ const error = (state = null, action) => {
     return state;
 };
 
-const errorSignup = (state = null, action) => {
+export const errorSignup = (state = null, action) => {
     switch (action.type) {
         case types.REGISTRATION_STARTED: {
             return null;
@@ -128,7 +128,7 @@ const errorSignup = (state = null, action) => {
     return state;
 };
 
-const isRefreshing = (state = false, action) => {
+export const isRefreshing = (state = false, action) => {
     switch (action.type) {
         case types.TOKEN_REFRESH_STARTED: {
             return true;
@@ -144,7 +144,7 @@ const isRefreshing = (state = false, action) => {
     return state;
 };
 
-const refreshingError = (state = null, action) => {
+export const refreshingError = (state = null, action) => {
     switch (action.type) {
         case types.TOKEN_REFRESH_STARTED: {
             return null;

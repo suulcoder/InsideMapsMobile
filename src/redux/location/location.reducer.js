@@ -1,7 +1,7 @@
 import * as types from './location.types';
 import {combineReducers} from 'redux';
 
-const location = (state = null, action) => {
+export const location = (state = null, action) => {
     switch (action.type) {
         case types.SET_INITIAL_LOCATION: {
             const {initLocation} = action.payload;
@@ -13,7 +13,7 @@ const location = (state = null, action) => {
     }
 };
 
-const destinationPath = (state = null, action) => {
+export const destinationPath = (state = null, action) => {
     switch (action.type) {
         case types.SET_DESTINATION_PATH_COMPLETED: {
             const {path, distance, destination} = action.payload.path;
