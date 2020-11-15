@@ -73,7 +73,6 @@ const isAuthenticating = (state = false, action) => {
             return false;
         }
     }
-
     return state;
 };
 

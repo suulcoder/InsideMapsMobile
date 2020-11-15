@@ -41,7 +41,6 @@ const destinationPath = (state = null, action) => {
 export default combineReducers({
     location,
     destinationPath,
-    // combine reducers for now, 'cause more reducers will be added later
 });
 
 export const getLocation = (state) => state.location;

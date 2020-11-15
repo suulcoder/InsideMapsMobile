@@ -16,7 +16,6 @@ function* fetchFilteredPlaces(action) {
         const {mapId} = yield select(selectors.getLocation);
 
         if (isAuth) {
-            //const token = yield select(selectors.getAuthToken);
             const {query} = action.payload;
 
             const response = yield call(

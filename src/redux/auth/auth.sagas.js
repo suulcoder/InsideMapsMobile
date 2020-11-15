@@ -34,7 +34,6 @@ function* login(action) {
             yield put(actions.failLogin(message));
         }
     } catch (error) {
-        //yield console.log(message);
         yield put(actions.failLogin('CONNECTION FAILED'));
     }
 }
@@ -93,9 +92,7 @@ function* refreshToken(action) {
                 const jResponse = yield response.json();
                 yield put(actions.completeTokenRefresh(jResponse.token));
             } else {
-                //const {non_field_errors} = yield response.json();
                 yield put(actions.logout());
-                //Actions.replace('Login')
             }
         } catch (error) {
             yield put(actions.failTokenRefresh('CONNECTION FAILED'));

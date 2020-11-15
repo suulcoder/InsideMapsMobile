@@ -2,6 +2,10 @@ import {StyleSheet} from 'react-native';
 import {colors} from '../../../configuration';
 
 const styles = StyleSheet.create({
+    isFetching: {
+        paddingTop: 20,
+        textAlign: "center"
+    },  
     avatarContainer: {
         flex: 1,
         backgroundColor: colors.secondary,
